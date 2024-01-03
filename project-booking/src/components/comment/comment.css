@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@100;500&family=Montserrat:wght@300&family=Poppins:wght@300&family=Roboto+Condensed:ital,wght@0,100;0,600;1,300&family=Roboto:wght@300;400&display=swap');
+
+.table-star-comment {
+    width: 70%;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 70px;
+    padding: 30px 0 70px 0;
+}
+
+.table-star-comment .header-payment {
+    width: 100%;
+    font-size: 30px;
+}
+
+.table-star-comment .box-list-image-room-comment {
+    width: 70%;
+    border-radius: 10px;
+}
+
+.table-star-comment .box-list-image-room-comment p {
+    font-size: 35px;
+    padding: 20px 0;
+}
+
+.table-star-comment .box-rate-star-comment {
+    width: 70%;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    background-color: #ffff;
+}
+
+.table-star-comment .box-rate-star-comment strong {
+    font-size: 20px;
+    margin-bottom: 10px;
+    letter-spacing: 1.5px;
+}
+
+.table-star-comment .box-rate-star-comment p {
+    font-size: 17px;
+    text-decoration: underline;
+    color: blue;
+    cursor: pointer;
+}
+
+.table-star-comment .box-comment {
+    width: 70%;
+    background-color: #ffff;
+    padding: 20px;
+}
+
+.table-star-comment .header-text-comment {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+}
+
+.table-star-comment .sort-comment-user {
+    display: flex;
+    flex-direction: column;
+    font-size: 15px;
+    row-gap: 10px;
+}
+
+.table-star-comment .writing-comment {
+    width: 70%;
+}

@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-family: sans-serif;
+}
+
+body {
+    background-color: #ffff;
+    color: rgba(0, 0, 0, .8);
+    position: relative;
+    font-family: sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul,
+ol {
+    list-style: none;
+}
+
+select,
+option,
+input,
+button {
+    border: none;
+    outline: none;
+    color: rgb(101, 98, 98);
+}
+
+button {
+    cursor: pointer;
+    transition: 0.3s;
+    background-color: #ffff;
+    font-family: 'Open Sans', sans-serif;
+
+}
+
+.header-admin {
+    font-size: 45px;
+    font-family: 'Open Sans', sans-serif;
+}

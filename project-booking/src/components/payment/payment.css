@@ -1,0 +1,81 @@
+.payment-table {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+    padding: 20px 0 50px 0;
+}
+
+.payment-table .step-payment {
+    width: 100%;
+}
+
+.payment-table .content-payment {
+    display: flex;
+    column-gap: 50px;
+    width: 90%;
+}
+
+.payment-table .content-payment .content-payment-table-booking {
+    flex: 1;
+    width: 100%;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+}
+
+.payment-table .pay-with-paypal {
+    width: 100%;
+    background-color: #ffff;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    padding: 30px;
+}
+
+.payment-table .pay-with-paypal h2 {
+    font-size: 30px;
+}
+
+.payment-table .pay-with-paypal strong {
+    padding-left: 15px;
+    font-size: 18px;
+}
+
+.payment-table .pay-with-paypal p {
+    padding-left: 15px;
+}
+
+.payment-table .pay-with-paypal .image-pay-with-payment {
+    text-align: end;
+}
+
+.payment-table .pay-with-paypal .image-pay-with-payment img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+}
+
+.payment-table .join-u-payments {
+    width: 100%;
+    background-color: #ffff;
+    border-radius: 15px;
+    padding: 30px;
+}
+
+.done-complete-payment {
+    width: 300px;
+    height: 50px;
+    border-radius: 5px;
+    font-size: 18px;
+}
+
+.come-back-payment {
+    width: 150px;
+    height: 50px;
+    border-radius: 5px;
+    margin: 0 8px;
+    font-size: 18px;
+}

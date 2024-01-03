@@ -1,0 +1,10 @@
+.action-btn {
+    display: flex;
+    column-gap: 20px;
+}
+
+.action-btn .btn-edit,
+.btn-delete {
+    font-size: 25px;
+    cursor: pointer;
+}

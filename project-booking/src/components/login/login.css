@@ -1,0 +1,166 @@
+.login {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    z-index: 1999;
+}
+
+.login .box-login {
+    width: 65%;
+    height: 650px;
+    border-radius: 10px;
+    background-color: #ffff;
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-between;
+    padding-top: 50px;
+    position: relative;
+    animation: moveBottom 0.4s linear;
+}
+
+@keyframes moveBottom {
+    0% {
+        transform: translateY(-500px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes moveTop {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(-500);
+    }
+}
+
+.login .box-login .box-login-left .logo-login {
+    padding-left: 24%;
+}
+
+.login .box-login .box-login-left .logo-login img {
+    width: 250px;
+    height: 85px;
+    object-fit: contain;
+}
+
+.login .box-login .box-login-left .title-login-box p {
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.login .box-login .box-login-left .email-login,
+.password-login {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    font-size: 15px;
+}
+
+.login .box-login .box-login-left .email-login input {
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    padding: 10px 30px;
+    width: 90%;
+    height: 55px;
+    border-radius: 5px;
+}
+
+.login .box-login .box-login-left .password-login input {
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    padding: 10px 30px;
+    width: 90%;
+    height: 55px;
+    border-radius: 5px;
+}
+
+.login .box-login .box-login-left {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 35px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+
+.login .box-login .box-login-left .btn-login-submit button {
+    width: 90%;
+    height: 55px;
+    color: #ffff;
+    background-color: rgb(63, 61, 61);
+    font-size: 18px;
+}
+
+.login .box-login .box-login-left .btn-login-submit button:active {
+    background-color: rgba(63, 61, 61, 0.5);
+}
+
+.login .box-login .box-login-right {
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 40px;
+    justify-content: center;
+    padding: 0 60px;
+    display: flex;
+    font-size: 15px;
+}
+
+.login .box-login .box-login-right p {
+    font-size: 19px;
+    font-weight: 550;
+}
+
+.login .box-login .box-login-right p:nth-child(1) {
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.login .box-login .box-login-right p:nth-child(2) {
+    color: black;
+}
+
+.login .box-login .box-login-right p:nth-child(3) {
+    color: black;
+    text-decoration: underline;
+    font-weight: 550;
+}
+
+.login .box-login .box-login-right button {
+    width: 100%;
+    height: 55px;
+    border: 2px solid rgb(63, 61, 61);
+    font-size: 19px;
+}
+
+.login .box-login .box-login-right button:hover {
+    border: 2px solid rgba(63, 61, 61, 0.5);
+}
+
+.login .box-login .btn-close-login {
+    position: absolute;
+    top: 15px;
+    right: 30px;
+
+}
+
+.login .box-login .btn-close-login button {
+    font-size: 30px;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.login .box-login .error-login {
+    color: red;
+    font-size: 13px;
+}

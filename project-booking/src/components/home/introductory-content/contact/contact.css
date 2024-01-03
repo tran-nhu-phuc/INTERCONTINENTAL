@@ -1,0 +1,48 @@
+.contact-main {
+    width: 60%;
+    height: 135px;
+    background-color: rgb(235, 223, 213);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 150px;
+}
+
+.contact-main .text {
+    font-size: 20px;
+}
+
+.contact-main .text p {
+    width: 93%;
+    font-family: "SVN-New Baskerville", serif;
+}
+
+.contact-main .phone {
+    display: flex;
+    column-gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.contact-main .phone p {
+    font-size: 20px;
+    padding-bottom: 3px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.contact-main .phone button {
+    padding: 15px 30px;
+    background-color: rgb(211, 181, 163);
+    font-family: "SVN-New Baskerville", serif !important;
+    font-size: 16.5px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    color: rgb(107, 104, 104);
+    border: 2px solid rgba(0, 0, 0, 0);
+}
+
+.contact-main .phone button:hover {
+    border: 2px solid rgb(211, 181, 163);
+    background: rgba(0, 0, 0, 0);
+    transition: 0.5s;
+}

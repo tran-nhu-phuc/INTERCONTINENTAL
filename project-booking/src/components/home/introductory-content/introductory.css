@@ -1,0 +1,45 @@
+.introductory {
+    width: 100%;
+    background-color: #ffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.introductory .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 130px 0;
+}
+
+.introductory .content .text {
+    color: rgb(61, 57, 53);
+    display: block;
+    font-family: "SVN-New Baskerville",
+        serif;
+    font-size: 38.4px;
+    font-style: italic;
+    font-weight: 400;
+    height: 548.484px;
+    line-height: 57.6px;
+    padding-bottom: 20px;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 10px;
+    text-align: center;
+    width: 60%;
+}
+
+.introductory .ceo-intercom {
+    margin-top: 50px;
+    display: flex;
+    column-gap: 20px;
+}
+
+.introductory .ceo-intercom span {
+    font-size: 18px;
+    font-weight: 400;
+}

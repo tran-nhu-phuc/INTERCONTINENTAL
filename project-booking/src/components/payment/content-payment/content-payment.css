@@ -1,0 +1,152 @@
+.content-payment-step-2 {
+    display: flex;
+    flex-direction: column;
+    row-gap: 50px;
+    padding: 50px;
+    background-color: #ffff;
+    border-radius: 15px;
+}
+
+.content-payment-step-2 .content-header-payment {
+    font-size: 17px;
+}
+
+.content-payment-step-2 .input-name-payment {
+    display: flex;
+    column-gap: 20px;
+    width: 100%;
+}
+
+.content-payment-step-2 .input-name-payment .first-name-payment,
+.last-name-payment {
+    display: flex;
+    flex-direction: column;
+    font-size: 15px;
+    row-gap: 5px;
+    width: 100%;
+}
+
+.content-payment-step-2 .input-name-payment .first-name-payment input {
+    width: 100%;
+    height: 50px;
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.content-payment-step-2 .input-name-payment .last-name-payment input {
+    width: 100%;
+    height: 50px;
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.content-payment-step-2 .input-email-payment {
+    display: flex;
+    flex-direction: column;
+    font-size: 15px;
+    row-gap: 5px;
+}
+
+.content-payment-step-2 .input-email-payment input {
+    width: 100%;
+    height: 50px;
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.content-payment-step-2 .input-country-payment {
+    width: 100%;
+    border-radius: 5px;
+    display: grid;
+    row-gap: 5px;
+}
+
+.content-payment-step-2 .input-country-payment .select-country-payment {
+    width: 100%;
+    height: 50px;
+    border: none;
+    border-radius: 5px;
+    font-size: 17px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.content-payment-step-2 .address-guest-payment {
+    display: flex;
+    flex-direction: column;
+    font-size: 15px;
+    row-gap: 5px;
+}
+
+.content-payment-step-2 .address-guest-payment input {
+    width: 100%;
+    height: 50px;
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.content-payment-step-2 .input-city-town {
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+    font-size: 15px;
+}
+
+.content-payment-step-2 .input-city-town input {
+    width: 100%;
+    height: 50px;
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.content-payment-step-2 .input-postal-code {
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+    font-size: 15px;
+}
+
+.content-payment-step-2 .input-postal-code input {
+    width: 100%;
+    height: 50px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+.content-payment-step-2 .input-phone-payment {
+    display: flex;
+    width: 100%;
+    font-size: 15px;
+    column-gap: 20px;
+}
+
+.content-payment-step-2 .input-phone-payment .phone-number-country-payment {
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+}
+
+.content-payment-step-2 .input-phone-payment .phone-number-country-payment .input-phone-number-country-payment {
+    width: 150px;
+    height: 50px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.content-payment-step-2 .input-phone-payment .phone-number-payment {
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+    width: 100%;
+    flex: 1;
+}
+
+.content-payment-step-2 .input-phone-payment .phone-number-payment input {
+    width: 100%;
+    height: 50px;
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.react-international-phone-input-container .react-international-phone-country-selector-button {
+    height: 50px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}

@@ -1,0 +1,101 @@
+.box-change-search .box-date {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    font-size: 15px;
+    row-gap: 20px;
+    padding-left: 20px;
+    position: relative;
+}
+
+.box-change-search .box-date .date-change-search {
+    display: flex;
+    column-gap: 20px;
+}
+
+.box-change-search .box-date .date-change-search .item-room {
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+    width: 250px;
+    height: 50px;
+}
+
+.box-change-search .box-date .room-people {
+    display: flex;
+    column-gap: 20px;
+}
+
+.box-change-search .box-date .room-people .many-room {
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+}
+
+.box-change-search .box-date .room-people .many-room .box-select {
+    width: 160px;
+    border-radius: 5px;
+    height: 30px;
+    background-color: #ffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 17px;
+    padding: 0 3px;
+    column-gap: 2px;
+}
+
+.box-change-search .box-date .room-people .many-room .box-select select {
+    flex: 1;
+    width: 100%;
+    height: 100%;
+    border: none;
+    padding-left: 10px;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+}
+
+.box-change-search .box-date .room-people .many-room .box-select .icon-bed {
+    color: rgb(216, 189, 180);
+}
+
+.box-change-search .box-date .btn-search button {
+    width: 100px;
+    height: 30px;
+    background-color: rgb(216, 189, 180);
+    font-size: 17px;
+    border: 2px solid rgb(216, 189, 180);
+}
+
+.box-change-search .box-date .btn-search button:hover {
+    background-color: rgba(0, 0, 0, 0);
+    color: #ffff;
+}
+
+.box-change-search .box-date .address-hotel {
+    position: absolute;
+    top: 10%;
+    right: 50px;
+    width: 400px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 17px;
+    border-radius: 5px;
+    height: 40px;
+    background-color: #ffff;
+    color: rgb(207, 201, 201);
+}
+
+.box-change-search .box-date .doc-change-search {
+    font-size: 13px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 5px;
+    padding-left: 10px;
+    margin-top: 20px;
+    color: rgb(187, 183, 183);
+}

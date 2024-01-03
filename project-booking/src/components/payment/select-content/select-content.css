@@ -1,0 +1,27 @@
+.select-content-payment {
+    width: 100%;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+}
+
+.select-content-payment .box-select-content-payment .box-select-payment {
+    display: flex;
+    justify-content: space-between;
+    border-radius: 5px;
+    padding: 20px;
+    font-size: 13px;
+    cursor: pointer;
+    background-color: #ffff;
+}
+
+.select-content-payment .box-select-content-payment .dropdown-select-payment {
+    background-color: #ffff;
+    font-size: 15px;
+    padding: 10px;
+}
+
+.select-content-payment .box-select-content-payment .dropdown-select-payment p {
+    font-size: 15px;
+}

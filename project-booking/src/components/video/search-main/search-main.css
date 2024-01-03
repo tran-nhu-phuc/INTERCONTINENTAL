@@ -1,0 +1,109 @@
+.search-main {
+  width: 100%;
+  height: 120px;
+  background-color: rgba(0, 0, 0, 0.3);
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  color: #ffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-main .items-input .box-date {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.search-main .items-input .dateGetRoom {
+  width: 215px;
+  height: 35px;
+  border-radius: 0.1px;
+  border: 2px solid rgba(216, 189, 180, 0.8);
+  padding: 10px 20px;
+  font-weight: 500;
+}
+
+.search-main .items-input .dateGetOutRoom {
+  width: 215px;
+  height: 35px;
+  border-radius: 0.1px;
+  border: 2px solid rgba(216, 189, 180, 0.8);
+}
+
+.search-main .items-input .box-date .item-room {
+  display: flex;
+  flex-direction: column;
+  row-gap: 5px;
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.search-main .many-room {
+  display: flex;
+  flex-direction: column;
+  row-gap: 5px;
+}
+
+.search-main .many-room label {
+  font-size: 17px;
+  font-weight: 500;
+}
+
+
+.search-main .many-room .box-select {
+  width: 215px;
+  height: 35px;
+  border-radius: 0.1px;
+  border: 2px solid rgba(216, 189, 180, 0.8);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffff;
+  padding: 5px 10px;
+  column-gap: 10px;
+}
+
+.search-main .many-room .box-select select {
+  width: 100%;
+  height: 100%;
+  flex: 1;
+  border: none;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.search-main .many-room .box-select .icon-bed {
+  font-size: 20px;
+  color: rgb(216, 189, 180);
+}
+
+.search-main .btn-search {
+  width: 160px;
+  height: 35px;
+  margin-top: 28px;
+}
+
+.search-main .btn-search button {
+  width: 100%;
+  height: 100%;
+  background-color: rgb(216, 189, 180);
+  font-size: 16px;
+  transition: 0.3s;
+  border: 2px solid rgb(216, 189, 180);
+}
+
+.search-main .btn-search button:hover {
+  background-color: rgba(0, 0, 0, 0);
+  color: #ffff;
+}
+
+.search-main .room-people {
+  display: flex;
+  column-gap: 10px;
+  margin: 0 25px;
+
+}

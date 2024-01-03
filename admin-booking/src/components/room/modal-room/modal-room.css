@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+
+.modal-admin-room {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 1000;
+    font-family: sans-serif;
+}
+
+.modal-admin-room .box-modal-room {
+    width: 400px;
+    height: 400px;
+    background-color: #ffff;
+    position: absolute;
+    top: 100px;
+    border-radius: 10px;
+    left: 40%;
+    animation: moveLeft 0.7s linear;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 50px;
+}
+
+.modal-admin-room .box-modal-room .box-input-room-admin {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+}
+
+.modal-admin-room .box-modal-room .box-input-room-admin input {
+    width: 100%;
+}
+
+.modal-admin-room .box-modal-room h2 {
+    width: 100%;
+    font-size: 25px;
+}
+
+@keyframes moveLeft {
+    0% {
+        transform: translateY(-500px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.close-modal-edit-room {
+    position: absolute;
+    top: 50px;
+    right: 33%;
+    font-size: 35px;
+    background-color: rgba(0, 0, 0, 0);
+    color: #fff;
+    border: none;
+}
+
+.save-edit-room {
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #ffff;
+}
+
+.save-edit-room:hover {
+    background-color: rgba(0, 0, 0, 1);
+}
+
+.save-edit-room:active {
+    background-color: rgba(0, 0, 0, 0.5);
+}

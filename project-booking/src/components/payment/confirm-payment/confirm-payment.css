@@ -1,0 +1,31 @@
+.box-confirm-payment {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    row-gap: 20px;
+    background-color: #ffff;
+    padding: 50px;
+    border-radius: 15px;
+}
+
+.box-confirm-payment h2 {
+    font-size: 40px;
+}
+
+.box-confirm-payment .box-confirm-details div {
+    width: 100%;
+    border-radius: 5px;
+}
+
+.box-confirm-payment .box-confirm-details {
+    width: 80%;
+    padding: 20px;
+    border-radius: 10px;
+    padding-left: 30px;
+    padding-top: 10px;
+    font-size: 13px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+}

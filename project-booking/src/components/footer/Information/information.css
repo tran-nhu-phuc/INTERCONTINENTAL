@@ -1,0 +1,131 @@
+ .information {
+     display: flex;
+     width: 100%;
+     height: 550px;
+     background-color: rgb(223, 226, 222);
+     justify-content: space-around;
+     column-gap: 120px;
+     padding-top: 35px;
+ }
+
+ .information .logo-hotel {
+     /* width: 100%;
+    height: 100%; */
+     display: flex;
+     flex-direction: column;
+     row-gap: 40px;
+ }
+
+ .information .logo-hotel .image {
+     display: flex;
+ }
+
+ .information .logo-hotel .address-hotel {
+     display: flex;
+     flex-direction: column;
+     row-gap: 50px;
+     font-size: 17px;
+ }
+
+ .information .logo-hotel .address-hotel .policy {
+     color: rgb(112, 110, 110);
+     font-size: 20px;
+     display: flex;
+     flex-direction: column;
+     row-gap: 20px;
+ }
+
+ /*  */
+ .information .register-guest {
+     /* width: 100%;
+    height: 100%; */
+     padding-top: 80px;
+     display: flex;
+     flex-direction: column;
+     row-gap: 50px;
+ }
+
+ .information .register-guest span {
+     font-size: 23px;
+ }
+
+ .information .register-guest .container-guest {
+     width: 500px;
+     height: 200px;
+     border: 3px solid rgb(216, 189, 180);
+     display: flex;
+     flex-direction: column;
+     justify-content: space-between;
+     align-items: center;
+     padding: 30px;
+     row-gap: 10px;
+ }
+
+ .information .register-guest .container-guest .name-guest {
+     display: flex;
+     column-gap: 30px;
+     width: 100%;
+     font-size: 19px;
+ }
+
+ .information .register-guest .container-guest .name-guest .btn {
+     display: flex;
+     column-gap: 10px;
+ }
+
+ .information .register-guest .container-guest .name-guest input {
+     width: 100%;
+     height: 40px;
+     border: 2px solid rgb(216, 189, 180);
+ }
+
+ .information .register-guest .container-guest .email-guest {
+     display: flex;
+     justify-content: space-between;
+     width: 100%;
+     column-gap: 85px;
+     font-size: 19px;
+ }
+
+ .information .register-guest .container-guest .email-guest input {
+     flex: 1;
+     width: 100%;
+     border: 2px solid rgb(216, 189, 180);
+     height: 40px;
+ }
+
+ .information .register-guest .container-guest .btn-guest button {
+     padding: 12px 20px;
+     background-color: rgb(216, 189, 180);
+     font-size: 17px;
+ }
+
+ /*  */
+ .information .social-network {
+     /* width: 100%;
+    height: 100%; */
+     padding-top: 80px;
+     display: flex;
+     flex-direction: column;
+     align-items: end;
+     /* padding-right: 200px; */
+ }
+
+ .information .social-network .logo-social-network {
+     display: flex;
+     column-gap: 20px;
+ }
+
+ .information .social-network .logo-social-network p i {
+     font-size: 28px;
+ }
+
+ .information .social-network .logo img {
+     width: 250px;
+     height: 150px;
+ }
+
+ .information .social-network .image img {
+     width: 140px;
+     height: 65px;
+ }

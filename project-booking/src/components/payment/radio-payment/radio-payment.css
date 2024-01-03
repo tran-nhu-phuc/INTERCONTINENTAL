@@ -1,0 +1,10 @@
+.box-radio-payment {
+    width: 100%;
+    border-radius: 15px;
+    background-color: #ffff;
+    font-size: 20px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+}

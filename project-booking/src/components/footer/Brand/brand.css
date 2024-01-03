@@ -1,0 +1,68 @@
+.box-legend {
+    width: 100%;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #ffff;
+    row-gap: 100px;
+    padding-top: 50px;
+}
+
+.box-legend .fieldset-legend {
+    width: 69%
+}
+
+.box-legend .fieldset-legend fieldset {
+    width: 100%;
+    height: 280px;
+    border: 2px solid rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    position: relative;
+}
+
+.box-legend .fieldset-legend fieldset legend {
+    position: absolute;
+    background-color: white;
+    padding: 0 10px;
+}
+
+.box-legend .fieldset-legend fieldset legend img {
+    width: 200px;
+    height: 50px;
+}
+
+.box-legend .fieldset-legend fieldset legend:nth-child(1) {
+    left: 3%;
+    top: -30px;
+}
+
+.box-legend .fieldset-legend fieldset legend:nth-child(2) {
+    right: 2%;
+    bottom: -30px;
+}
+
+.box-legend .image-brand {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto auto auto auto;
+    padding: 28px;
+    column-gap: 40px;
+    row-gap: 50px;
+}
+
+.box-legend .image-brand div img {
+    width: 90px;
+    height: 65px;
+}
+
+/* content */
+.box-legend .content {
+    width: 69%;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    flex-direction: column;
+    row-gap: 10px;
+}

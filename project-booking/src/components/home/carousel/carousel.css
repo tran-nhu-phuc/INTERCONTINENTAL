@@ -1,0 +1,39 @@
+.slide-carousel {
+    width: 100%;
+    position: relative;
+    margin: 100px 0 0 0;
+    background-color: #ffff;
+}
+
+.slide-carousel .box-slide-carousel .item-slide-carousel img {
+    width: 100%;
+    height: 800px;
+    object-fit: cover;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.slide-carousel .btn-slide-left {
+    position: absolute;
+    top: 43%;
+    left: 0;
+    background-color: black;
+    z-index: 1000;
+}
+
+.slide-carousel .btn-slide-left button {
+    padding: 25px 25px;
+    font-size: 20px;
+}
+
+.slide-carousel .btn-slide-right {
+    position: absolute;
+    top: 43%;
+    right: 0;
+    background-color: black;
+    z-index: 1000;
+}
+
+.slide-carousel .btn-slide-right button {
+    padding: 25px 25px;
+    font-size: 20px;
+}

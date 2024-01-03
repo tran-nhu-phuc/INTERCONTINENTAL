@@ -1,0 +1,35 @@
+.box-join-us {
+    line-height: 1.5;
+    display: flex;
+    flex-direction: column;
+    row-gap: 18px;
+}
+
+.box-join-us .box-ambassador {
+    padding: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    line-height: 1.7;
+}
+
+.box-join-us p {
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.box-join-us .box-ambassador .input-become-an-ambassador {
+    display: flex;
+    column-gap: 15px;
+    font-size: 20px;
+}
+
+.box-join-us h2 {
+    font-size: 27px;
+}
+
+.box-join-us span {
+    color: rgb(224, 163, 143);
+}

@@ -1,0 +1,69 @@
+.box-modal-image-room {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.box-modal-image-room .box-image-room {
+    width: 700px;
+    height: 500px;
+    background-color: #ffff;
+    position: absolute;
+    top: 10%;
+    left: 30%;
+    bottom: 0;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    animation: moveLeft 0.7s linear;
+}
+
+@keyframes moveLeft {
+    0% {
+        transform: translateY(-500px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.box-modal-image-room .box-image-room .image-room {
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.box-modal-image-room .box-image-room .slide-table-details-room {
+    width: 100%;
+    height: 100%;
+}
+
+.box-modal-image-room .box-image-room .image-room img {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+.custom-btn-slide-details-room-booking {
+    background-color: rgba(0, 0, 0, 0);
+    font-size: 20px;
+    color: #ffff;
+}
+
+.close-pop-up-views-image-room {
+    position: fixed;
+    top: 50px;
+    right: 30%;
+    background-color: rgba(0, 0, 0, 0);
+    color: #ffff;
+    font-size: 40px;
+}

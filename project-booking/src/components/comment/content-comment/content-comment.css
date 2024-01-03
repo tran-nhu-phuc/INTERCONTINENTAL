@@ -1,0 +1,74 @@
+.box-content-comment {
+    width: 100%;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    display: flex;
+    column-gap: 10px;
+    padding: 20px 0;
+}
+
+.box-content-comment .avatar-user-comment {
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    align-items: center;
+    font-size: 15px;
+}
+
+.box-content-comment .content-user-comment {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+}
+
+.box-content-comment .content-user-comment .star-rated-user {
+    display: flex;
+    column-gap: 10px;
+    align-items: center;
+    font-size: 13px;
+}
+
+.box-content-comment .content-user-comment .star-rated-user .done-icon-user-comment {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    font-size: 20px;
+    padding: 2px;
+    border-radius: 50px;
+    background-color: black;
+    color: #ffff;
+}
+
+.box-content-comment .content-user-comment .custom-comment-user {
+    display: flex;
+    column-gap: 10px;
+    font-size: 11px;
+}
+
+.box-content-comment .content-user-comment .custom-comment-user p {
+    padding: 5px 15px;
+    border-radius: 5px;
+    background-color: rgb(190, 245, 245);
+}
+
+.box-content-comment .content-user-comment .date-comment {
+    display: flex;
+    font-size: 11px;
+}
+
+.box-content-comment .content-user-comment .text-comment p {
+    font-size: 13.5px;
+    line-height: 1.5;
+}
+
+.box-content-comment .content-user-comment .count-like-comment {
+    font-size: 14px;
+}
+
+.box-content-comment .content-user-comment .click-like-comment {
+    display: flex;
+    column-gap: 10px;
+    font-size: 15px;
+}
+
+.box-content-comment .content-user-comment .click-like-comment .icon-like-comment-user-clicked {
+    font-size: 20px;
+}

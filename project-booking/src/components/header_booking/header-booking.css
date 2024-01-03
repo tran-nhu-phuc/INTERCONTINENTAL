@@ -1,0 +1,93 @@
+.header-register {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgb(31, 68, 86);
+}
+
+.header-register .header-image-register {
+    width: 100%;
+    height: 200px;
+    background-color: #ffff;
+    padding-left: 15%;
+}
+
+.header-register .header-image-register img {
+    width: 220px;
+    height: 100%;
+    object-fit: contain;
+    cursor: pointer;
+}
+
+.header-register .box-header-register {
+    width: 70%;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #ffff;
+}
+
+.header-register .box-header-register .phone-register {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 30px;
+    font-size: 17px;
+}
+
+.header-register .do-register {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 25px;
+}
+
+.header-register .do-register .translate,
+.home-lie {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 10px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.header-register .do-register .join button {
+    font-size: 17px;
+    background-color: rgb(31, 68, 86);
+    color: #ffff;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.header-register .do-register .login-header-booking {
+    font-size: 20px;
+    background-color: #ffff;
+    color: rgba(31, 68, 86, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 5px;
+    cursor: pointer;
+}
+
+.header-register .do-register .login-header-booking:hover {
+    border: 1px solid rgba(31, 68, 86, 0.5);
+}
+
+.header-register .do-register .login button {
+    font-size: 17px;
+    color: rgba(31, 68, 86, 0.5);
+}
+
+.header-register .do-register .join button:hover {
+    background-color: #ffff;
+    color: rgba(31, 68, 86, 0.5);
+}

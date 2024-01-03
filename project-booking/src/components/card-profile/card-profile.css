@@ -1,0 +1,55 @@
+.form-control:focus {
+    box-shadow: none;
+    border-color: #c7c5c8
+}
+
+.form-control {
+    font-size: 12px;
+    padding: 15px 0 15px 10px;
+    border-radius: 5px;
+    margin: 10px 0;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.rounded-circle {
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+    margin-bottom: 20px;
+}
+
+.profile-button {
+    background: rgb(221, 219, 222);
+    box-shadow: none;
+    border: none
+}
+
+.profile-button:hover {
+    background: rgb(221, 219, 222);
+}
+
+.profile-button:focus {
+    background: rgb(221, 219, 222);
+    box-shadow: none
+}
+
+.profile-button:active {
+    background: rgb(221, 219, 222);
+    box-shadow: none
+}
+
+.back:hover {
+    background: rgb(221, 219, 222);
+    cursor: pointer
+}
+
+.labels {
+    font-size: 11px
+}
+
+.add-experience:hover {
+    background: rgb(221, 219, 222);
+    color: #fff;
+    cursor: pointer;
+    background: rgb(221, 219, 222);
+}
