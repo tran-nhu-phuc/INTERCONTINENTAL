@@ -1,31 +1,19 @@
 {
   "users": [
     {
-      "id": 1,
-      "name": "",
-      "booking": [],
-      "status": 1,
-      "email": "",
-      "password": "",
-      "role": "",
-      "avatar": [
-        "https://th.bing.com/th/id/R.c11b6f38dffc24a4508217513b0e50bd?rik=Pt%2bkITlukiMkWg&riu=http%3a%2f%2fwww.emmegi.co.uk%2fwp-content%2fuploads%2f2019%2f01%2fUser-Icon.jpg&ehk=zjS04fF4nxx%2bpkvRPsSezyic3Z7Yfu%2fuoT75KnbNv1Y%3d&risl=&pid=ImgRaw&r=0"
-      ],
-      "comment": []
-    },
-    {
       "email": "123123@gmail.com",
       "password": "$2a$10$KIoxUsxF9Xd2x7DXLOYnZO9nFIqAkK09WUVCoHOW1UMKWv.upA7Dy",
       "first_name": "123123",
       "last_name": "123",
       "booking": [],
       "status": 1,
-      "phone": "123",
+      "phone": "1",
       "role": 1,
       "avatar": [
         "https://th.bing.com/th/id/R.c11b6f38dffc24a4508217513b0e50bd?rik=Pt%2bkITlukiMkWg&riu=http%3a%2f%2fwww.emmegi.co.uk%2fwp-content%2fuploads%2f2019%2f01%2fUser-Icon.jpg&ehk=zjS04fF4nxx%2bpkvRPsSezyic3Z7Yfu%2fuoT75KnbNv1Y%3d&risl=&pid=ImgRaw&r=0"
       ],
-      "id": 2
+      "id": 2,
+      "phone ": "1"
     },
     {
       "email": "lamnhattien1223@gmail.com",
@@ -138,6 +126,36 @@
         "https://th.bing.com/th/id/R.c11b6f38dffc24a4508217513b0e50bd?rik=Pt%2bkITlukiMkWg&riu=http%3a%2f%2fwww.emmegi.co.uk%2fwp-content%2fuploads%2f2019%2f01%2fUser-Icon.jpg&ehk=zjS04fF4nxx%2bpkvRPsSezyic3Z7Yfu%2fuoT75KnbNv1Y%3d&risl=&pid=ImgRaw&r=0"
       ],
       "id": 10
+    },
+    {
+      "email": "phuctnbd0036511111@fpt.com.vn",
+      "password": "$2a$10$coVm6KCgRV6icXJ3c3rHBOqSzMDHDPCZJcShq8Q77dgMmPmstMH1S",
+      "first_name": "trần",
+      "last_name": "phúc",
+      "booking": [],
+      "status": 1,
+      "phone": "0358510100",
+      "role": 2,
+      "avatar": [
+        "https://cdn3.vectorstock.com/i/1000x1000/30/97/flat-business-man-user-profile-avatar-icon-vector-4333097.jpg"
+      ],
+      "comment": [],
+      "id": 11
+    },
+    {
+      "email": "phuctnbd00365123123@fpt.com.vn",
+      "password": "$2a$10$uQ3Bnq6yrtQYU3vjbf4N3O4ByJ.ypMPIyhG2C9nYBL6RgG6uREvme",
+      "first_name": "trần",
+      "last_name": "phúc",
+      "booking": [],
+      "status": 1,
+      "phone": "0358510100",
+      "role": 2,
+      "avatar": [
+        "https://cdn3.vectorstock.com/i/1000x1000/30/97/flat-business-man-user-profile-avatar-icon-vector-4333097.jpg"
+      ],
+      "comment": [],
+      "id": 12
     }
   ],
   "rooms": [

@@ -9,6 +9,7 @@ import HistoryBooking from "../components/history/history";
 import CommentBooking from "../components/comment/comment";
 import PrivateRouter from "./private-routes";
 import ProfileUser from "../components/card-profile/card-profile";
+import ForgotPassword from "../components/forgot-password/forgot-password";
 
 const RoutesLink = () => {
   return (
@@ -18,6 +19,10 @@ const RoutesLink = () => {
         <Route
           path="/register"
           element={<LayoutBooking child={<RegisterBooking />} />}
+        />
+        <Route
+          path="/forgot-password"
+          element={<LayoutBooking child={<ForgotPassword />} />}
         />
         <Route
           path="/booking"
