@@ -5,6 +5,7 @@
     align-items: center;
     flex-direction: column;
     background-color: rgb(31, 68, 86);
+    position: relative;
 }
 
 .header-register .header-image-register {
@@ -12,6 +13,24 @@
     height: 200px;
     background-color: #ffff;
     padding-left: 15%;
+}
+
+.header-register .come-back-comment {
+    position: absolute;
+    top: 30%;
+    left: 1%;
+    display: flex;
+    column-gap: 25px;
+    font-size: 17px;
+    color: rgba(0, 0, 0, 0.3);
+}
+
+.header-register .come-back-comment .come-back-comment-left {
+    cursor: pointer;
+}
+
+.header-register .come-back-comment .come-back-comment-right {
+    cursor: pointer;
 }
 
 .header-register .header-image-register img {
@@ -90,4 +109,122 @@
 .header-register .do-register .join button:hover {
     background-color: #ffff;
     color: rgba(31, 68, 86, 0.5);
+}
+
+.image-user-profile-header-booking {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+.component-profiles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 1000;
+}
+
+.btn-show-qr-code-check-in {
+    width: 100%;
+    border: none;
+    outline: none;
+    background-image: linear-gradient(to right, rgb(247, 164, 90), pink);
+    color: #f2f4ef;
+    font-size: 20px;
+    padding: 10px 0;
+    border-radius: 10px;
+}
+
+.header-register .list-qr-code-left .text-qr-code-in-btn {
+    display: flex;
+    justify-content: space-around;
+    font-size: 15px;
+}
+
+.header-register .list-qr-code-left {
+    position: relative;
+    width: 400px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+    background-color: #ffff;
+    overflow-y: scroll;
+    animation: moveLeft 0.7s linear;
+    z-index: 1000;
+    align-items: end;
+    padding: 20px;
+}
+
+@keyframes moveLeft {
+    0% {
+        transform: translateX(200%);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.header-register .list-qr-code-left::-webkit-scrollbar {
+    display: none;
+}
+
+.close-btn-list-qr-code {
+    border: none;
+    outline: none;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 10000;
+    background-color: rgba(0, 0, 0, 0);
+    font-size: 25px;
+}
+
+.table-show-list-check-in-qr-code {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    display: flex;
+    justify-content: end;
+}
+
+.header-register .open-model-list-qr-code {
+    position: fixed;
+    top: 70px;
+    right: 0;
+    background-image: linear-gradient(to right, rgb(252, 184, 56), rgb(242, 194, 104));
+    outline: none;
+    border: none;
+    font-size: 17px;
+    color: #ffff;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 5px;
+    border-top-left-radius: 100px;
+    border-bottom-left-radius: 100px;
+}
+
+.header-register .table-show-list-check-in-qr-code .image-header-model-qr-code {
+    width: 100%;
+    height: 250px;
+    object-fit: contain;
+}
+
+.header-register .table-show-list-check-in-qr-code .image-item-booking-header {
+    width: 100%;
+    height: 300px;
+    object-fit: contain;
+    border-radius: 15px;
 }

@@ -1,6 +1,8 @@
 import { useState } from "react";
 import "./menu-btn-header.css";
 import TagBooking from "../../home/tag_booking/tag_booking";
+import { useDispatch } from "react-redux";
+import { updateSearch } from "../../../store/reducer/update";
 const ButtonHeader = () => {
   const [openTagBooking, setTagBooking] = useState<boolean>(false);
   const handelChangeStatus = (status: boolean) => {

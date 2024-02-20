@@ -3,67 +3,59 @@ import React, { useState } from "react";
 import { PhoneInput } from "react-international-phone";
 import "react-international-phone/style.css";
 import { CountryDropdown } from "react-country-region-selector";
-import { Booking, Room } from "../../../type/type";
-import { useParams } from "react-router-dom";
+import { Booking } from "../../../type/type";
+import moment from "moment";
 interface Props {
-  dataRoom: Room;
+  dataRoom: any;
 }
 const ContentPayment: React.FC<Props> = (props: Props) => {
-  const date = new Date();
-  const day = date.getDate();
-  const month = date.getMonth() + 1;
-  const year = date.getFullYear();
-  const fulDay = `${day}/${month}/${year}`;
   const [phone, setPhone] = useState("");
   const [country, setCountry] = useState("");
-  const { v4: uuidv4 } = require("uuid");
-  const { id } = useParams();
-  const curDate = new Date();
   const idUser = localStorage.getItem("tokenId");
   const getDataSes = JSON.parse(
     sessionStorage.getItem("data_search") as string
   );
   const [dataPayment, setDataPayment] = useState<Booking>({
-    phoneUserOrder: "",
-    firstNameUserOrder: "",
-    lastNameUserOrder: "",
-    codeOrder: "",
-    countRoom: NaN,
-    idRoom: NaN,
-    idUser: NaN,
-    timeBooking: "",
-    emailAddress: "",
+    roomId: NaN,
+    timeCheckIn: "",
+    timeCheckOut: "",
+    nameRoom: "",
+    numberRooms: NaN,
     totalPrice: NaN,
+    userId: NaN,
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: NaN,
+    countryCode: "",
     address: "",
-    cityTown: "",
-    postalCode: "",
-    statusBooking: 1,
-    codePhoneCountry: "",
-    dateStartRoom: "",
-    dateEndRoom: "",
     country: "",
-    countUser: NaN,
-    countChild: NaN,
-    pay: 2,
-    getDateNow: fulDay,
+    city: "",
+    numberUser: NaN,
+    numberChild: NaN,
+    cityCode: NaN,
   });
   const handelGetDataInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target as HTMLInputElement;
     setDataPayment((prev: any) => ({
       ...prev,
       [name]: value,
-      codePhoneCountry: phone,
+      roomId: props.dataRoom.id,
+      timeCheckIn: moment(getDataSes.timeCheckIn, "D/M/YYYY").format(
+        "YYYY-MM-DD"
+      ),
+      timeCheckOut: moment(getDataSes.timeCheckOut, "D/M/YYYY").format(
+        "YYYY-MM-DD"
+      ),
+      nameRoom: props.dataRoom.name,
+      countryCode: phone,
       country: country,
-      codeOrder: uuidv4(),
-      idRoom: id,
-      idUser: idUser,
-      countChild: getDataSes.countChild,
-      countRoom: getDataSes.numberRoom,
-      timeBooking: curDate.getHours() + ":" + curDate.getMinutes(),
-      countUser: getDataSes.countUser,
-      dateEndRoom: getDataSes.dateEnd,
-      dateStartRoom: getDataSes.dataStart,
-      totalPrice: Number(getDataSes.numberRoom) * Number(props.dataRoom.cost),
+      userId: Number(idUser),
+      numberChild: getDataSes.numberChild,
+      numberRooms: getDataSes.numberRooms,
+      numberUser: getDataSes.numberUser,
+      totalPrice:
+        Number(getDataSes?.numberRooms) * Number(props.dataRoom?.price),
     }));
   };
   sessionStorage.setItem(
@@ -82,8 +74,8 @@ const ContentPayment: React.FC<Props> = (props: Props) => {
           <label>First Name</label>
           <input
             type="text"
-            name="firstNameUserOrder"
-            value={dataPayment.firstNameUserOrder}
+            name="firstName"
+            value={dataPayment?.firstName}
             onChange={handelGetDataInput}
           ></input>
         </div>
@@ -91,9 +83,9 @@ const ContentPayment: React.FC<Props> = (props: Props) => {
           <label>Last Name</label>
           <input
             type="text"
-            name="lastNameUserOrder"
+            name="lastName"
             onChange={handelGetDataInput}
-            value={dataPayment.lastNameUserOrder}
+            value={dataPayment?.lastName}
           ></input>
         </div>
       </div>
@@ -101,10 +93,14 @@ const ContentPayment: React.FC<Props> = (props: Props) => {
         <label>Email Address</label>
         <input
           type="email"
-          name="emailAddress"
+          name="email"
           onChange={handelGetDataInput}
-          value={dataPayment.emailAddress}
+          value={dataPayment?.email}
         ></input>
+        <span className="confirm-additional-email">
+          Please make sure this is your email. Because we will send check-in
+          information through this email !
+        </span>
       </div>
       <div className="input-country-payment">
         <label>Country/Region</label>
@@ -120,25 +116,26 @@ const ContentPayment: React.FC<Props> = (props: Props) => {
           type="text"
           name="address"
           onChange={handelGetDataInput}
-          value={dataPayment.address}
+          value={dataPayment?.address}
         ></input>
       </div>
       <div className="input-city-town">
         <label>City/Town</label>
         <input
           type="text"
-          name="cityTown"
+          name="city"
           onChange={handelGetDataInput}
-          value={dataPayment.cityTown}
+          value={dataPayment?.city}
         ></input>
       </div>
       <div className="input-postal-code">
         <label>Postal Code</label>
         <input
           type="text"
-          name="postalCode"
+          name="cityCode"
           onChange={handelGetDataInput}
-          value={dataPayment.postalCode}
+          value={dataPayment?.cityCode}
+          placeholder="."
         ></input>
       </div>
       <div className="input-phone-payment">
@@ -156,9 +153,9 @@ const ContentPayment: React.FC<Props> = (props: Props) => {
           <label>Phone Number</label>
           <input
             type="number"
-            name="phoneUserOrder"
+            name="phone"
             onChange={handelGetDataInput}
-            value={dataPayment.phoneUserOrder}
+            value={dataPayment?.phone}
           ></input>
         </div>
       </div>

@@ -2,7 +2,7 @@ import RoomRepository from "../repositories/room-repositories";
 import { Booking } from "../type/type";
 
 class RoomService {
-  private roomRepository: any;
+  private roomRepository: RoomRepository;
   constructor() {
     this.roomRepository = new RoomRepository();
   }
@@ -13,9 +13,9 @@ class RoomService {
       throw error;
     }
   }
-  public async getAllItem() {
+  public async getAllItem(endPointQuery: string) {
     try {
-      return await this.roomRepository.getAllRoom();
+      return await this.roomRepository.getAllRoom(endPointQuery);
     } catch (error) {
       throw error;
     }

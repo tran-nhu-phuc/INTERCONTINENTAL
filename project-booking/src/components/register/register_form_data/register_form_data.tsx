@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import { User } from "../../../type/type";
 interface Props {
   getInputFormData: Function;
-  dataFormUser: User;
+  dataFormUser: any;
   handelButtonRegister: Function;
 }
 interface ValidateData {
-  first_name: string;
-  last_name: string;
+  firstName: string;
+  lastName: string;
   email: string;
   phone: string;
   password: string;
@@ -17,16 +17,16 @@ type InputName = keyof ValidateData;
 const RegisterFormData: React.FC<Props> = (props: Props) => {
   const [dataPasswordAgain, setDataPasswordAgain] = useState("");
   const [validateForm, setValidateForm] = useState<ValidateData>({
-    first_name: "",
-    last_name: "",
+    firstName: "",
+    lastName: "",
     email: "",
     phone: "",
     password: "",
     passwordAgain: "",
   });
   const [errorValidate, setErrorValidate] = useState<ValidateData>({
-    first_name: "",
-    last_name: "",
+    firstName: "",
+    lastName: "",
     email: "",
     phone: "",
     password: "",
@@ -36,8 +36,8 @@ const RegisterFormData: React.FC<Props> = (props: Props) => {
     let isValid = true;
     let errorMessage = "";
     switch (name) {
-      case "first_name":
-      case "last_name":
+      case "firstName":
+      case "lastName":
       case "phone":
         isValid = value.trim() !== "";
         errorMessage = isValid ? "" : `Please enter a ${name}`;
@@ -82,8 +82,8 @@ const RegisterFormData: React.FC<Props> = (props: Props) => {
   }, [dataPasswordAgain]);
   const statusErrorForm = () => {
     if (
-      errorValidate.first_name === "" &&
-      errorValidate.last_name === "" &&
+      errorValidate.firstName === "" &&
+      errorValidate.lastName === "" &&
       errorValidate.email === "" &&
       errorValidate.password === "" &&
       errorValidate.passwordAgain === ""
@@ -101,22 +101,22 @@ const RegisterFormData: React.FC<Props> = (props: Props) => {
         <input
           placeholder="."
           type="text"
-          name="first_name"
-          value={props.dataFormUser.first_name}
+          name="firstName"
+          value={props.dataFormUser.firstName}
           onChange={handelFormRegister}
         />
-        <span className="error-form-data">{errorValidate.first_name}</span>
+        <span className="error-form-data">{errorValidate.firstName}</span>
       </div>
       <div className="last-name-register">
         <label>Tên *</label>
         <input
           placeholder="."
           type="text"
-          name="last_name"
-          value={props.dataFormUser.last_name}
+          name="lastName"
+          value={props.dataFormUser.lastName}
           onChange={handelFormRegister}
         />
-        <span className="error-form-data">{errorValidate.last_name}</span>
+        <span className="error-form-data">{errorValidate.lastName}</span>
       </div>
       <div className="email-register">
         <label>Email *</label>

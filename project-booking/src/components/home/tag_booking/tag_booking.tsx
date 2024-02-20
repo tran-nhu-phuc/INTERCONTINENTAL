@@ -3,19 +3,53 @@ import "./tag_booking.css";
 import { IoBed } from "react-icons/io5";
 import { FaUser } from "react-icons/fa";
 import { FaChildReaching } from "react-icons/fa6";
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { values } from "json-server-auth";
 interface Props {
   handelChangeStatus: Function;
 }
 const TagBooking: React.FC<Props> = (props: Props) => {
-  const onChange: DatePickerProps["onChange"] = (date, dateString) => {};
   const date = new Date();
   const day = date.getDate();
   const month = date.getMonth() + 1;
   const year = date.getFullYear();
   const fullDate = day + "/" + month + "/" + year;
+  const [countUser, setCountUser] = useState<number>();
+  const [countChild, setCountChild] = useState<number>();
+  const [numberRoom, setNumberRoom] = useState<number>();
+  const [startDate, setStartDate] = useState(date);
+  const [dayStart, setDayStart] = useState<any>();
+  const [endDate, setEndDate] = useState();
+  const navigate = useNavigate();
   const disabledDate = (current: any) => {
     return current && current < date;
+  };
+  const disabledEndDate = (endValue: any) => {
+    if (!endValue || !startDate) {
+      return false;
+    }
+    return endValue.isBefore(startDate); // isBefore() để kiểm tra xem một thời điểm có trước một thời điểm khác hay không
+  };
+  const handelStartDateChange = (date: any, dateString: string) => {
+    setStartDate(date);
+    setDayStart(dateString);
+  };
+  const handelEndDateChange = (date: any, dateString: any) => {
+    setEndDate(dateString);
+  };
+  const handelChangeSearch = () => {
+    sessionStorage.setItem(
+      "data_search",
+      JSON.stringify({
+        numberUser: countUser || 1,
+        numberChild: countChild || 1,
+        numberRooms: numberRoom || 1,
+        timeCheckIn: dayStart,
+        timeCheckOut: endDate,
+      })
+    );
+    navigate("/booking");
   };
   return (
     <div className="hard-tag-booking">
@@ -28,7 +62,7 @@ const TagBooking: React.FC<Props> = (props: Props) => {
             <p>Ngày nhận phòng</p>
             <DatePicker
               format={"DD/MM/YYYY"}
-              onChange={onChange}
+              onChange={handelStartDateChange}
               className="dateGetRoom"
               placeholder={fullDate}
               disabledDate={disabledDate}
@@ -39,18 +73,21 @@ const TagBooking: React.FC<Props> = (props: Props) => {
             <p>Ngày trả phòng</p>
             <DatePicker
               format={"DD/MM/YYYY"}
-              onChange={onChange}
+              onChange={handelEndDateChange}
               className="dateGetRoom"
               placeholder={fullDate}
-              disabledDate={disabledDate}
+              disabledDate={disabledEndDate}
             />
           </div>
         </div>
         <div className="count-tag-booking">
           <div className="tag-room-booking">
-            <p>Số phòng</p>
+            <p>Số lượng phòng</p>
             <div className="box-tag-select">
-              <select name="room">
+              <select
+                name="room"
+                onChange={(e: any) => setNumberRoom(e.target.value)}
+              >
                 <option>1</option>
                 <option>2</option>
                 <option>3</option>
@@ -63,7 +100,10 @@ const TagBooking: React.FC<Props> = (props: Props) => {
           <div className="tag-room-booking">
             <p>Người lớn</p>
             <div className="box-tag-select">
-              <select name="room">
+              <select
+                name="room"
+                onChange={(e: any) => setCountUser(e.target.value)}
+              >
                 <option>1</option>
                 <option>2</option>
                 <option>3</option>
@@ -91,7 +131,10 @@ const TagBooking: React.FC<Props> = (props: Props) => {
           <div className="tag-room-booking">
             <p>Trẻ em</p>
             <div className="box-tag-select">
-              <select name="room">
+              <select
+                name="room"
+                onChange={(e: any) => setCountChild(e.target.value)}
+              >
                 <option>1</option>
                 <option>2</option>
                 <option>3</option>
@@ -118,7 +161,7 @@ const TagBooking: React.FC<Props> = (props: Props) => {
           </div>
         </div>
         <div className="btn-tag-booking-search">
-          <button>Tìm kiếm</button>
+          <button onClick={handelChangeSearch}>Tìm kiếm</button>
         </div>
         <span
           className="close-tag-booking"

@@ -23,29 +23,24 @@ export interface Room {
   comment: [];
 }
 export interface Booking {
-  id?: number;
-  phoneUserOrder: string;
-  firstNameUserOrder: string;
-  lastNameUserOrder: string;
-  codeOrder: string;
-  countRoom: number;
-  idRoom: number;
-  idUser: number;
-  timeBooking: string;
+  roomId: number;
+  timeCheckIn: string;
+  timeCheckOut: string;
+  nameRoom: string;
+  numberRooms: number;
   totalPrice: number;
-  emailAddress: string;
+  userId: number;
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: number;
+  countryCode: string;
   address: string;
-  cityTown: string;
-  postalCode: string;
-  statusBooking: number;
-  codePhoneCountry: string;
-  dateStartRoom: string;
-  dateEndRoom: string;
   country: string;
-  countUser: number;
-  countChild: number;
-  pay: number;
-  getDateNow: string;
+  city: string;
+  numberUser: number;
+  numberChild: number;
+  cityCode: number;
 }
 export interface Contents {
   title: string;

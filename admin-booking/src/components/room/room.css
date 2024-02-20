@@ -52,3 +52,14 @@
     background-color: rgba(0, 0, 0, 0);
     text-decoration: underline;
 }
+
+.action-btn-change {
+    display: flex;
+    width: 100%;
+    font-size: 25px;
+    column-gap: 20px;
+}
+
+.action-btn-change>div {
+    cursor: pointer;
+}

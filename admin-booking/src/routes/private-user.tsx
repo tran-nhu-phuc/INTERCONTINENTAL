@@ -13,7 +13,7 @@ const PrivateUser = () => {
       <Layout child={<User />} />
     </>
   ) : (
-    (toast.error("Chưa đăng nhập"), (<Navigate to={"/register"} />))
+    (toast.error("Chưa đăng nhập"), (<Navigate to={"*"} />))
   );
 };
 

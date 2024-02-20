@@ -1,0 +1,12 @@
+.create-category {
+    background-color: rgb(63, 238, 63);
+    color: #ffff;
+    padding: 15px 30px;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+}
+
+.create-category:active {
+    background-color: rgb(105, 248, 105);
+}

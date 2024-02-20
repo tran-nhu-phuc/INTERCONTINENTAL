@@ -8,8 +8,7 @@ import Payment from "../components/payment/payment";
 import HistoryBooking from "../components/history/history";
 import CommentBooking from "../components/comment/comment";
 import PrivateRouter from "./private-routes";
-import ProfileUser from "../components/card-profile/card-profile";
-import ForgotPassword from "../components/forgot-password/forgot-password";
+import UrlQrCode from "../components/url-qr-code/url-qr-code";
 
 const RoutesLink = () => {
   return (
@@ -19,10 +18,6 @@ const RoutesLink = () => {
         <Route
           path="/register"
           element={<LayoutBooking child={<RegisterBooking />} />}
-        />
-        <Route
-          path="/forgot-password"
-          element={<LayoutBooking child={<ForgotPassword />} />}
         />
         <Route
           path="/booking"
@@ -39,13 +34,10 @@ const RoutesLink = () => {
           element={<LayoutBooking child={<HistoryBooking />} />}
         />
         <Route
-          path="/comment"
+          path="/comment/:id"
           element={<LayoutBooking child={<CommentBooking />} />}
         />
-        <Route
-          path="/profile"
-          element={<LayoutBooking child={<ProfileUser />} />}
-        />
+        <Route path="/qr-code" element={<UrlQrCode />} />
         <Route path="*" element={<h1>Not Found</h1>} />
       </Routes>
     </>

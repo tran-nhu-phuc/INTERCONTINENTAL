@@ -9,16 +9,17 @@
     background-color: rgba(0, 0, 0, 0.6);
     z-index: 1000;
     font-family: sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .modal-admin-room .box-modal-room {
-    width: 400px;
-    height: 400px;
+    width: 90%;
+    height: 70%;
     background-color: #ffff;
-    position: absolute;
-    top: 100px;
+    position: fixed;
     border-radius: 10px;
-    left: 40%;
     animation: moveLeft 0.7s linear;
     display: flex;
     flex-direction: column;
@@ -31,7 +32,13 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    row-gap: 15px;
+    row-gap: 25px;
+
+}
+
+.modal-admin-room .box-modal-room .box-input-room-admin .box-input-edit-room {
+    display: flex;
+    column-gap: 20px;
 }
 
 .modal-admin-room .box-modal-room .box-input-room-admin input {
@@ -56,11 +63,10 @@
 .close-modal-edit-room {
     position: absolute;
     top: 50px;
-    right: 33%;
+    right: 2%;
     font-size: 35px;
     background-color: rgba(0, 0, 0, 0);
-    color: #fff;
-    border: none;
+    color: #ffff;
 }
 
 .save-edit-room {
@@ -74,4 +80,91 @@
 
 .save-edit-room:active {
     background-color: rgba(0, 0, 0, 0.5);
+}
+
+.box-edit-image-room {
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto auto auto auto auto;
+    height: 100%;
+    column-gap: 30px;
+}
+
+.box-edit-image-room .box-edit-image-room-link-1 {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+}
+
+.box-edit-image-room .box-edit-image-room-link-1 img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 1);
+}
+
+.handle-upload-image {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.handle-upload-image .box-handle-upload-image {
+    width: 30%;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffff;
+    flex-direction: column;
+    border-radius: 15px;
+    row-gap: 20px;
+    position: relative;
+}
+
+.handle-upload-image .box-handle-upload-image .btn-upload-image-user-profile {
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.handle-upload-image .box-handle-upload-image img {
+    border-radius: 15px;
+}
+
+.handle-upload-image .box-handle-upload-image .btn-upload-image-user-profile:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.handle-upload-image .box-handle-upload-image .btn-upload-image-user-profile:active {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.handle-upload-image .close-preview-profile {
+    position: absolute;
+    top: 10px;
+    right: 13px;
+    font-size: 20px;
+    outline: none;
+    cursor: pointer;
+    border: none;
+    background-color: #ffff;
+}
+
+.close-card-profile-user {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    outline: none;
+    border: none;
 }

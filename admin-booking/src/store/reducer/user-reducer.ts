@@ -1,15 +1,14 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import UserService from "../../services/user-services";
 import { Login } from "../../components/login/login";
-
 export const onLogin = createAsyncThunk(
-  "users/fetchByID",
+  "admin/fetchByID",
   async (formLogin: Login) => {
     try {
       const userService = new UserService();
       const response = await userService.login(formLogin);
       localStorage.setItem("token_admin", response.data.accessToken);
-      localStorage.setItem("tokenId_admin", response.data.user.id);
+      localStorage.setItem("tokenId_admin", response.data.data.id);
       return response;
     } catch (error) {
       return error;
@@ -25,8 +24,8 @@ export const userSlice = createSlice({
   reducers: {
     logout: (state) => {
       state.data = undefined;
-      localStorage.removeItem("token");
-      localStorage.removeItem("tokenId");
+      localStorage.removeItem("token_admin");
+      localStorage.removeItem("tokenId_admin");
       sessionStorage.clear();
     },
   },

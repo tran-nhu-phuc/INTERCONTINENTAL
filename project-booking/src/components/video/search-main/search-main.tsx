@@ -1,17 +1,18 @@
 import "./search-main.css";
-import { DatePicker, DatePickerProps, Space } from "antd";
-import { useEffect, useState } from "react";
+import { DatePicker, Space } from "antd";
+import { useState } from "react";
 import { IoBed } from "react-icons/io5";
 import { FaUser } from "react-icons/fa";
 import { FaChildReaching } from "react-icons/fa6";
-import { SearchRoom } from "../../../type/type";
 import { useNavigate } from "react-router-dom";
+import moment from "moment";
 const Search = () => {
   const date = new Date();
   const day = date.getDate();
   const month = date.getMonth() + 1;
   const year = date.getFullYear();
   const fullDate = day + "/" + month + "/" + year;
+  const fullDateEnd = day + 1 + "/" + month + "/" + year;
   const [countUser, setCountUser] = useState<number>(1);
   const [countChild, setCountChild] = useState<number>(1);
   const [numberRoom, setNumberRoom] = useState<number>(1);
@@ -22,11 +23,15 @@ const Search = () => {
   const disabledDate = (current: any) => {
     return current && current < date;
   };
+
   const disabledEndDate = (endValue: any) => {
     if (!endValue || !startDate) {
       return false;
     }
-    return endValue.isBefore(startDate); // isBefore() để kiểm tra xem một thời điểm có trước một thời điểm khác hay không
+
+    const oneDayAfterStartDate = moment(startDate).add(1, "days");
+
+    return endValue.isBefore(oneDayAfterStartDate);
   };
   const handelStartDate = (date: any, dateString: string) => {
     setStartDate(date);
@@ -36,11 +41,11 @@ const Search = () => {
     sessionStorage.setItem(
       "data_search",
       JSON.stringify({
-        dataStart: dayStart ? dayStart : fullDate,
-        dateEnd: endDate ? endDate : fullDate,
-        numberRoom: numberRoom,
-        countUser: countUser,
-        countChild: countChild,
+        timeCheckIn: dayStart ? dayStart : fullDate,
+        timeCheckOut: endDate ? endDate : fullDateEnd,
+        numberRooms: numberRoom,
+        numberUser: countUser,
+        numberChild: countChild,
       })
     );
     navigate("/booking");
@@ -69,7 +74,7 @@ const Search = () => {
               <DatePicker
                 format={"DD/MM/YYYY"}
                 className="dateGetOutRoom"
-                placeholder={fullDate}
+                placeholder={fullDateEnd}
                 disabledDate={disabledEndDate}
                 onChange={(date: any, dateString: any) =>
                   setEndDate(dateString)

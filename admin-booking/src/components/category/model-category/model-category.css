@@ -1,0 +1,47 @@
+.model-category {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.model-category .box-model-category {
+    width: 25%;
+    height: 250px;
+    background-color: #ffff;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+    row-gap: 20px;
+    position: relative;
+}
+
+.model-category .box-model-category input {
+    padding: 15px 0;
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+
+}
+
+.model-category .box-model-category button {
+    background-color: orange;
+    color: #ffff;
+    width: 100px;
+    padding: 7px;
+    border-radius: 5px;
+}
+
+.model-category .box-model-category .btn-close-model-category {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}

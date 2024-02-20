@@ -1,21 +1,12 @@
 import { PayPalButtons } from "@paypal/react-paypal-js";
-import OrderRepository from "../../../repositories/order-repositories";
 import { message } from "antd";
-import { Booking, Room } from "../../../type/type";
-import { useNavigate, useParams } from "react-router-dom";
-import RoomService from "../../../services/room-service";
-import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 type Props = {
   amount: number;
 };
 const PaypalComponent = (props: Props) => {
-  const { id } = useParams() as number | any;
   const navigate = useNavigate();
-  const [dataRoom, setDataRoom] = useState<any>();
   const { amount } = props;
-  const dataSes: Booking = JSON.parse(
-    sessionStorage.getItem("data_payment") as string
-  );
   const handlePaymentSuccess = async () => {
     try {
       message.success("Processing complete!");

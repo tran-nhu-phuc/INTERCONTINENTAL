@@ -2,19 +2,19 @@ import "./change-search.css";
 import { IoBed } from "react-icons/io5";
 import { FaUser } from "react-icons/fa";
 import { FaChildReaching } from "react-icons/fa6";
-import { DatePicker, DatePickerProps, Space } from "antd";
-import { memo, useEffect, useState } from "react";
+import { DatePicker, Space } from "antd";
+import { memo, useState } from "react";
 import { useDispatch } from "react-redux";
 import { updateSearch } from "../../../store/reducer/update";
 const ChanSearch = () => {
   const getData = JSON.parse(sessionStorage.getItem("data_search") as string);
   const date = new Date();
-  const [countUser, setCountUser] = useState<number>(getData.countUser);
-  const [countChild, setCountChild] = useState<number>(getData.countChild);
-  const [numberRoom, setNumberRoom] = useState<number>(getData.numberRoom);
+  const [countUser, setCountUser] = useState<number>(getData.numberUser);
+  const [countChild, setCountChild] = useState<number>(getData.numberChild);
+  const [numberRoom, setNumberRoom] = useState<number>(getData.numberRooms);
   const [startDate, setStartDate] = useState(date);
-  const [dayStart, setDayStart] = useState<any>(getData.dataStart);
-  const [endDate, setEndDate] = useState(getData.endDate);
+  const [dayStart, setDayStart] = useState<any>(getData.timeCheckIn);
+  const [endDate, setEndDate] = useState(getData.timeCheckOut);
   const [status, setStatus] = useState<boolean>(true);
   const dispatch = useDispatch();
   const disabledDate = (current: any) => {
@@ -39,13 +39,14 @@ const ChanSearch = () => {
     sessionStorage.setItem(
       "data_search",
       JSON.stringify({
-        countUser: countUser,
-        countChild: countChild,
-        numberRoom: numberRoom,
-        dataStart: dayStart,
-        endDate: endDate,
+        numberUser: countUser,
+        numberChild: countChild,
+        numberRooms: numberRoom,
+        timeCheckIn: dayStart,
+        timeCheckOut: endDate,
       })
     );
+    window.scrollTo(0, 500);
     setStatus(true);
     dispatch(updateSearch() as any);
   };
@@ -59,7 +60,7 @@ const ChanSearch = () => {
               format={"DD/MM/YYYY"}
               onChange={handelStartDateChange}
               className="dateGetRoom"
-              placeholder={endDate}
+              placeholder={dayStart}
               disabledDate={disabledDate}
             />
           </div>

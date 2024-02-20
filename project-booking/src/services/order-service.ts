@@ -22,6 +22,20 @@ class OrderService {
       throw error;
     }
   }
+  public async getAllByUser(idUser: number) {
+    try {
+      return await this.orderRepository.getAllByUser(idUser);
+    } catch (error) {
+      throw error;
+    }
+  }
+  async removeBooking(idBooking: number) {
+    try {
+      return await this.orderRepository.removeBooking(idBooking);
+    } catch (error) {
+      throw error;
+    }
+  }
 }
 
 export default OrderService;

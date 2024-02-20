@@ -1,21 +1,49 @@
-import * as React from "react";
 import { BarChart } from "@mui/x-charts/BarChart";
 import "./dashboard.css";
-import { useLocation } from "react-router-dom";
 import { RiMoneyDollarCircleFill } from "react-icons/ri";
 import { TbBrandBooking } from "react-icons/tb";
 import { FaUser } from "react-icons/fa";
+import UserService from "../../services/user-services";
+import BookingService from "../../services/booking-services";
+import { useEffect, useMemo, useState } from "react";
 const DashBoard = () => {
-  const location = useLocation();
+  const [dataUser, setDataUser] = useState<any>();
+  const [dataThirtyDay, setDataThirtyDay] = useState<any>();
+  const totalPrice: any = useMemo(() => {
+    let total = 0;
+    dataThirtyDay?.map((item: any) => {
+      return (total += Number(item?.total_amount));
+    });
+    return total;
+  }, [dataThirtyDay]);
+  useEffect(() => {
+    const handleCallData = async () => {
+      const userServices = new UserService();
+      const bookingServices = new BookingService();
+      try {
+        const resultDataUser = await userServices.getAllUser();
+        setDataUser([...resultDataUser.data]);
+        const resultDataThirtyDay = await bookingServices.getAllPriceByDay();
+        console.log(resultDataThirtyDay);
+
+        setDataThirtyDay([...resultDataThirtyDay?.data] || []);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    handleCallData();
+  }, []);
+  console.log(dataThirtyDay);
+
   return (
     <div className="table-dashboard-admin">
-      <h1 className="header-admin">Dash Board</h1>
+      <h1 className="header-admin">Dashboard</h1>
       <div className="dashboard-admin">
         <div className="box-item-dashboard-price-total">
           <div className="box">
             <div className="content-total-price">
               <span>Total Price</span>
-              <strong>12999$</strong>
+              <strong>{totalPrice || 0}$</strong>
             </div>
             <div className="icon-total-price">
               <RiMoneyDollarCircleFill className="icon-total-price-money" />
@@ -26,7 +54,7 @@ const DashBoard = () => {
           <div className="box">
             <div className="dash-board-user-content">
               <span>Total Customers</span>
-              <strong>18</strong>
+              <strong>{dataUser?.length}</strong>
             </div>
             <div className="icon-user-dashboard">
               <FaUser className="icon-total-user" />
@@ -37,7 +65,7 @@ const DashBoard = () => {
           <div className="box">
             <div className="dash-board-booking-content">
               <span>Total Booking</span>
-              <strong>100</strong>
+              <strong>{dataThirtyDay?.length}</strong>
             </div>
             <div className="icon-booking-dashboard">
               <TbBrandBooking className="icon-total-booking" />
@@ -45,12 +73,14 @@ const DashBoard = () => {
           </div>
         </div>
         <div className="box-item-dashboard-chart">
+          <h5 className="header-chart-dash-board">Bookings Data For 30 Days</h5>
           <BarChart
             series={[
               {
                 data: [
-                  1, 2, 3, 2, 1, 1, 2, 3, 2, 1, 1, 2, 3, 2, 1, 1, 2, 3, 2, 1, 1,
-                  2, 3, 2, 1, 1, 2, 3, 2, 1,
+                  dataThirtyDay?.map((item: any) => {
+                    return item?.total_amount || 0;
+                  }),
                 ],
               },
             ]}
@@ -92,7 +122,7 @@ const DashBoard = () => {
               },
             ]}
             height={400}
-            width={1500}
+            width={2000}
             leftAxis={null}
           />
         </div>

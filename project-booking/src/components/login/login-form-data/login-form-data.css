@@ -1,0 +1,10 @@
+.forgot-password-login {
+    font-size: 14px;
+    text-decoration: underline;
+    cursor: pointer;
+    color: rgba(0, 0, 0, 0.3);
+}
+
+.forgot-password-login:hover {
+    color: rgba(0, 0, 0, 0.7);
+}

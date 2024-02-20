@@ -28,8 +28,6 @@ const ModalImageRoom: React.FC<Props> = (props: Props) => {
     autoplay: true,
     wrapAround: true,
   };
-  console.log(props.dataImage);
-
   return (
     <div className="box-modal-image-room ">
       <div className="box-image-room">
@@ -48,9 +46,26 @@ const ModalImageRoom: React.FC<Props> = (props: Props) => {
             }) => <CustomNextButton onClick={nextSlide} />}
             {...carouselSettings}
           >
-            {props?.dataImage?.image.map((item: any) => {
-              return <img src={item} alt="image room"></img>;
-            })}
+            <img
+              src={props?.dataImage?.imageRooms[0]?.linkImage1}
+              alt="image room"
+            ></img>
+            <img
+              src={props?.dataImage?.imageRooms[0]?.linkImage2}
+              alt="image room"
+            ></img>
+            <img
+              src={props?.dataImage?.imageRooms[0]?.linkImage3}
+              alt="image room"
+            ></img>
+            <img
+              src={props?.dataImage?.imageRooms[0]?.linkImage4}
+              alt="image room"
+            ></img>
+            <img
+              src={props?.dataImage?.imageRooms[0]?.linkImage5}
+              alt="image room"
+            ></img>
           </Carousel>
         </div>
       </div>

@@ -9,6 +9,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Tooltip } from "antd";
 import { useDispatch } from "react-redux";
 import { logout } from "../../store/reducer/user-reducer";
+import { MdCategory } from "react-icons/md";
 const SideBar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -52,6 +53,13 @@ const SideBar = () => {
           <Link to="/users">
             <Tooltip title="Users">
               <FaUser className="icon-side-bar-admin" />
+            </Tooltip>
+          </Link>
+        </li>
+        <li className="aside-a" title="category">
+          <Link to="/categories">
+            <Tooltip title="Categories">
+              <MdCategory className="icon-side-bar-admin" />
             </Tooltip>
           </Link>
         </li>

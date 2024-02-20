@@ -5,22 +5,18 @@ import RegisterFormData from "./register_form_data/register_form_data";
 import UserService from "../../services/user-service";
 import toast, { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { onRegister } from "../../store/reducer/user";
 const RegisterBooking = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [checkFormRegister, setCheckFormRegister] = useState<boolean>(false);
   const [dataFormUser, setDataFormUser] = useState<any>({
-    first_name: "",
-    last_name: "",
-    booking: [],
-    status: 1,
+    firstName: "",
+    lastName: "",
     email: "",
     phone: NaN,
     password: "",
-    role: 2,
-    avatar: [
-      "https://cdn3.vectorstock.com/i/1000x1000/30/97/flat-business-man-user-profile-avatar-icon-vector-4333097.jpg",
-    ],
-    comment: [],
   });
   const handelButtonRegister = (dataRegister: boolean) => {
     setCheckFormRegister(dataRegister);
@@ -31,17 +27,21 @@ const RegisterBooking = () => {
   const joinDataRegister = async () => {
     try {
       if (checkFormRegister) {
-        const userService = new UserService();
-        const res = await userService.register(dataFormUser);
-        if (res.status === 201) {
-          toast.success("đăng ký thành công");
+        const res = await dispatch(onRegister(dataFormUser) as any).unwrap();
+        if (!res.data.errors) {
           navigate("/");
+          return;
+        } else {
+          toast.error("email đã tồn tại");
+          return;
         }
       } else {
         toast.error("Vui lòng nhập đúng");
+        return;
       }
     } catch {
-      toast.error("Tài khoản đã tồn tại");
+      toast.error("register error");
+      return;
     }
   };
   return (

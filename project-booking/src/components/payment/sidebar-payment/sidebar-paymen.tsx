@@ -1,31 +1,34 @@
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import "./sidebar-payment.css";
 import Carousel from "nuka-carousel";
-import React from "react";
-import { Room } from "../../../type/type";
+import React, { useMemo, useState } from "react";
 interface CustomButtonProps {
   onClick: () => void;
 }
 interface Props {
-  dataRoom: Room;
+  dataRoom: any;
+  handleOpenVoucher: Function;
+  voucherDiscount: any;
 }
 const CustomPrevButton: React.FC<CustomButtonProps> = ({ onClick }) => (
   <button onClick={onClick} className="custom-btn-slide-item-room-booking">
+    .
     <FaChevronLeft />
   </button>
 );
-
 const CustomNextButton: React.FC<CustomButtonProps> = ({ onClick }) => (
   <button onClick={onClick} className="custom-btn-slide-item-room-booking">
+    .
     <FaChevronRight />
   </button>
 );
 const SideBarPayment: React.FC<Props> = (props: Props) => {
+  const data_search: any = sessionStorage.getItem("data_search") as string;
+  const data_search_room = JSON.parse(data_search);
   const carouselSettings = {
     autoplay: true,
     wrapAround: true,
   };
-  const itemImage: any = props.dataRoom ? [...props.dataRoom.image] : [];
   return (
     <div className="box-sidebar-payment">
       <div className="image-sidebar-payment">
@@ -43,9 +46,26 @@ const SideBarPayment: React.FC<Props> = (props: Props) => {
           }) => <CustomNextButton onClick={nextSlide} />}
           {...carouselSettings}
         >
-          {itemImage?.map((item: any) => {
-            return <img src={item} alt="image room intercom" />;
-          })}
+          <img
+            src={props.dataRoom?.imageRooms[0]?.linkImage1}
+            alt="image room intercom"
+          />
+          <img
+            src={props.dataRoom?.imageRooms[0]?.linkImage2}
+            alt="image room intercom"
+          />
+          <img
+            src={props.dataRoom?.imageRooms[0]?.linkImage3}
+            alt="image room intercom"
+          />
+          <img
+            src={props.dataRoom?.imageRooms[0]?.linkImage4}
+            alt="image room intercom"
+          />
+          <img
+            src={props.dataRoom?.imageRooms[0]?.linkImage5}
+            alt="image room intercom"
+          />
         </Carousel>
       </div>
       <div className="title-sidebar-payment">
@@ -55,13 +75,25 @@ const SideBarPayment: React.FC<Props> = (props: Props) => {
         ></img>
         <div className="title-sidebar-payment-header">
           <strong>InterContinental Danang Sun Peninsula Resort</strong>
-          <p>1 {props.dataRoom ? props.dataRoom.name : "aaa"}</p>
+          <p>
+            {data_search.countUser}{" "}
+            {props.dataRoom ? props.dataRoom.name : "aaa"}
+          </p>
         </div>
       </div>
       <div className="payment-alert">
         <div className="total-price-payment">
           <strong>Total Price</strong>
-          <strong>{props.dataRoom ? props.dataRoom.cost : 0} USD</strong>
+          <strong>
+            {(1 - Number(props.voucherDiscount) / 100) *
+              Number(
+                props.dataRoom
+                  ? Number(props.dataRoom?.price) *
+                      Number(data_search_room?.numberRooms)
+                  : 0
+              )}{" "}
+            USD
+          </strong>
         </div>
         <div className="date-payment">
           <strong>Dates</strong>
@@ -88,11 +120,11 @@ const SideBarPayment: React.FC<Props> = (props: Props) => {
         <div className="count-night">
           <div className="night-payment">
             <strong>1 night stay</strong>
-            <p>{props.dataRoom ? props.dataRoom.cost : 0} USD</p>
+            <p>{props.dataRoom ? props.dataRoom.price : 0} USD</p>
           </div>
           <div className="dec-payment">
             <p>Dec 25 - Dec 26</p>
-            <p>{props.dataRoom ? props.dataRoom.cost : 0} USD</p>
+            <p>{props.dataRoom ? props.dataRoom.price : 0} USD</p>
           </div>
         </div>
         <div className="average-nightly-rate">
@@ -120,9 +152,42 @@ const SideBarPayment: React.FC<Props> = (props: Props) => {
             <p>137.70 USD</p>
           </div>
         </div>
+        <p
+          onClick={() => props.handleOpenVoucher(true)}
+          style={{
+            color: "green",
+            textDecoration: "underline",
+            cursor: "pointer",
+            fontSize: "15px",
+          }}
+        >
+          Áp dụng voucher
+        </p>
         <div className="total-price-payment-side-bar-booking">
           <strong>Total Price</strong>
-          <strong>{props.dataRoom ? props.dataRoom.cost : 0} USD</strong>
+          {props.voucherDiscount !== 0 ? (
+            <strong style={{ textDecoration: "line-through" }}>
+              {Number(
+                props.dataRoom
+                  ? Number(props.dataRoom?.price) *
+                      Number(data_search_room?.numberRooms)
+                  : 0
+              )}{" "}
+              USD
+            </strong>
+          ) : (
+            <strong></strong>
+          )}
+          <strong>
+            {(1 - Number(props.voucherDiscount) / 100) *
+              Number(
+                props.dataRoom
+                  ? Number(props.dataRoom?.price) *
+                      Number(data_search_room?.numberRooms)
+                  : 0
+              )}{" "}
+            USD
+          </strong>
         </div>
       </div>
     </div>

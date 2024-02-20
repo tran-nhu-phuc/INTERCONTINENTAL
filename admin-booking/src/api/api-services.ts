@@ -23,5 +23,8 @@ class ApiService {
   async delete(endpoint: string, id: number): Promise<any> {
     return await baseAxios.delete(`${endpoint}/${id}`);
   }
+  async uploadRoom(formData: any, endpoint: string) {
+    return await baseAxios.patch(`${endpoint}`, formData);
+  }
 }
 export default ApiService;

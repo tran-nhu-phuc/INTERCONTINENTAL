@@ -1,16 +1,20 @@
+import "./login.css";
 import React, { useState } from "react";
-import Login, { Submit } from "@react-login-page/page4";
+import Login from "@react-login-page/page4";
 import { useDispatch } from "react-redux";
 import { onLogin } from "../../store/reducer/user-reducer";
 import toast, { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { message } from "antd";
 export interface Login {
   email: string;
   password: string;
 }
 const LoginComponent = () => {
-  // Khai báo state để lưu trữ giá trị của password và email
-  const [getDataInput, setGetDataInput] = useState<any>();
+  const [getDataInput, setGetDataInput] = useState<any>({
+    email: "",
+    password: "",
+  });
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handelFormLogin = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -25,33 +29,50 @@ const LoginComponent = () => {
       if (getDataInput.email !== "" && getDataInput.password !== "") {
         const res = await dispatch(onLogin(getDataInput) as any).unwrap();
         if (res?.response?.status == 400) {
-          toast.error("400");
-          return;
+          message.error(res?.data);
         }
-        if (
-          res?.status == 201 ||
-          (res?.status == 200 && res.data.user.role === 2)
-        ) {
-          toast.success("ok login");
+        if (res?.status == 201 || res?.status == 200) {
+          message.success("ok login");
           navigate("/");
         } else {
-          toast.error("Bạn không có quyền truy cập");
+          message.error("Bạn không có quyền truy cập");
         }
       }
     } catch (error) {
-      toast.error("404");
+      message.error("Not Found 404");
     }
   };
   return (
-    <Login style={{ height: 1000, overflow: "hidden" }}>
-      <Toaster />
-      <Login.Password
-        onChange={handelFormLogin}
-        name="password"
-      ></Login.Password>
-      <Login.Email onChange={handelFormLogin} name="email" />
-      <Submit onClick={handelSubmitLogin}></Submit>
-    </Login>
+    <div className="table-login-admin">
+      <div className="form-login-admin">
+        <img
+          className="image-header-login-admin"
+          src="https://th.bing.com/th/id/R.dac6ac7b9b93ade37f386b44c27fa8e0?rik=7fkA4FhB0QWV8g&pid=ImgRaw&r=0"
+          alt=""
+        />
+        <div>
+          <label>Email</label>
+          <input
+            type="email"
+            placeholder="."
+            name="email"
+            value={getDataInput?.email}
+            onChange={handelFormLogin}
+          />
+        </div>
+        <div>
+          <label>Password</label>
+          <input
+            type="password"
+            placeholder="."
+            name="password"
+            value={getDataInput?.password}
+            onChange={handelFormLogin}
+          />
+        </div>
+        <button onClick={handelSubmitLogin}>Login</button>
+      </div>
+    </div>
   );
 };
 

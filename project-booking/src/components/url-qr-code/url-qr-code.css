@@ -1,0 +1,8 @@
+.content-data-qr-code {
+    display: flex;
+    flex-direction: column;
+}
+
+.content-data-qr-code>div {
+    display: flex;
+}

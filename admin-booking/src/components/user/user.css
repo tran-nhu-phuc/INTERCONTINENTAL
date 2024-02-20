@@ -38,3 +38,8 @@ td {
     border-radius: 50px;
     object-fit: cover;
 }
+
+.action-btn-change-user {
+    font-size: 25px;
+    cursor: pointer;
+}

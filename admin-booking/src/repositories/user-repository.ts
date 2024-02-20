@@ -12,7 +12,10 @@ class UserRepository {
   }
 
   async login(formRequestModel: any): Promise<any> {
-    const res = await this.apiService.post("login", formRequestModel);
+    const res = await this.apiService.post(
+      "/api/v1/admins/login-admin",
+      formRequestModel
+    );
     return res;
   }
   async getInformation(id: number): Promise<any> {
@@ -20,11 +23,15 @@ class UserRepository {
     return res;
   }
   async getAllUser(): Promise<any> {
-    const res = await this.apiService.get("users");
+    const res = await this.apiService.get("/api/v1/users/?limit=10000");
     return res;
   }
-  async setStatusUser(dataRoom: any, id: number): Promise<any> {
-    const res = await this.apiService.patch(id, dataRoom, "users");
+  async setStatusUser(dataUser: any, id: number): Promise<any> {
+    const res = await this.apiService.patch(
+      id,
+      dataUser,
+      "/api/v1/users/update-status"
+    );
     return res;
   }
 }

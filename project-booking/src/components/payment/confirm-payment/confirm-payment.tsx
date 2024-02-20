@@ -7,21 +7,20 @@ const ConFirmPayment = () => {
       <div className="box-confirm-details">
         <div className="name-country-confirm-payment">
           <span>
-            {getSes.firstNameUserOrder} {getSes.lastNameUserOrder}{" "}
+            {getSes.firstName} {getSes.lastName}{" "}
           </span>
         </div>
         <div className="name-country-confirm-payment">
           <span>
-            {getSes.cityTown},{getSes.address} {getSes.postalCode}{" "}
-            {getSes.country}
+            {getSes.city},{getSes.address} {getSes.cityCode} {getSes.country}
           </span>
         </div>
         <div className="name-email-confirm-payment">
-          <span>{getSes.emailAddress}</span>
+          <span>{getSes.email}</span>
         </div>
         <div className="name-phone-confirm-payment">
           <span>
-            {getSes.codePhoneCountry} {getSes.phoneUserOrder}
+            {getSes.countryCode} {getSes.phone}
           </span>
         </div>
       </div>

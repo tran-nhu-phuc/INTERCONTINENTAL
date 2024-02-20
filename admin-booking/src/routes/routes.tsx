@@ -11,6 +11,8 @@ import PrivateRouter from "./private";
 import PrivateRoom from "./private-room";
 import PrivateUser from "./private-user";
 import PrivateBooking from "./private-booking";
+import Category from "../components/category/categories";
+import PrivateCategory from "./private-catefory";
 const RouterAdmin = () => {
   return (
     <>
@@ -26,6 +28,9 @@ const RouterAdmin = () => {
         </Route>
         <Route element={<PrivateBooking />}>
           <Route path="/bookings" element={<Layout child={<Orders />} />} />
+        </Route>
+        <Route element={<PrivateCategory />}>
+          <Route path="/categories" element={<Layout child={<Category />} />} />
         </Route>
         <Route path="/login" element={<LoginComponent />} />
         <Route path="*" element={<NotFound />} />

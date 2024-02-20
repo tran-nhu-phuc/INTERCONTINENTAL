@@ -20,7 +20,6 @@ const ModalUser: React.FC<Props> = (props: Props) => {
           );
           await props.handelCallBackApi();
           await props.handelClosePopup();
-          await toast.success("edit ok");
         } else {
           toast.error("fill up select");
         }

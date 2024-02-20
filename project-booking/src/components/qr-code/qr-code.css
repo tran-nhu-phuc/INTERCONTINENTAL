@@ -1,0 +1,51 @@
+.box-qr-code {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+}
+
+.box-qr-code .table-qr-code {
+    width: 30%;
+    height: 600px;
+    background-color: #ffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    flex-direction: column;
+    row-gap: 10px;
+    position: relative;
+}
+
+.box-qr-code .table-qr-code img {
+    width: 50%;
+    height: 150px;
+    object-fit: contain;
+}
+
+.box-qr-code .close-model-qr-code {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 25px;
+    background-color: rgba(0, 0, 0, 0);
+    outline: none;
+    border: none;
+}
+
+.btn-out-booking-item {
+    background-color: orange;
+    color: #ffff;
+    padding: 4px 25px;
+    margin-left: 10px;
+    outline: none;
+    border-radius: 5px;
+    border: none;
+}

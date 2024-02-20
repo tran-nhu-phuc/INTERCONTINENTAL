@@ -1,0 +1,132 @@
+.box-content-comment-ratting {
+    width: 100%;
+    display: flex;
+    position: relative;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 25px;
+}
+
+.box-content-comment-ratting .avatar-user-comment {
+    width: 150px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    align-items: center;
+    font-size: 15px;
+}
+
+.box-content-comment-ratting .avatar-user-comment .icon-comment-user-avatar {
+    cursor: pointer;
+}
+
+.box-content-comment-ratting .content-user-comment {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.box-content-comment-ratting .content-user-comment .star-rated-user {
+    display: flex;
+    column-gap: 10px;
+    align-items: center;
+    font-size: 13px;
+    justify-content: space-between;
+    height: 40px;
+}
+
+.box-content-comment-ratting .content-user-comment .star-rated-user .star-icon-ratting {
+    display: flex;
+    column-gap: 10px;
+}
+
+.box-content-comment-ratting .content-user-comment .star-rated-user .star-icon-ratting>p {
+    display: flex;
+    column-gap: 10px;
+    align-items: center;
+    padding-top: 10px;
+}
+
+.box-content-comment-ratting .content-user-comment .star-rated-user .done-icon-user-comment {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    font-size: 20px;
+    padding: 2px;
+    border-radius: 50px;
+    background-color: black;
+    color: #ffff;
+}
+
+.box-content-comment-ratting .content-user-comment .custom-comment-user {
+    display: flex;
+    column-gap: 10px;
+    font-size: 11px;
+}
+
+.box-content-comment-ratting .content-user-comment .custom-comment-user p {
+    padding: 5px 15px;
+    border-radius: 5px;
+    background-color: rgb(190, 245, 245);
+}
+
+.box-content-comment-ratting .content-user-comment .date-comment {
+    display: flex;
+    font-size: 11px;
+    justify-content: end;
+}
+
+.box-content-comment-ratting .content-user-comment .text-comment {
+    width: 100%;
+    max-width: 2000px;
+    height: 100%;
+    min-width: 700px;
+    padding-left: 10px;
+}
+
+.box-content-comment-ratting .content-user-comment .text-comment p {
+    font-size: 15.5px;
+}
+
+.box-content-comment-ratting .content-user-comment .count-like-comment {
+    font-size: 12px;
+    padding-top: 5px;
+}
+
+.box-content-comment-ratting .content-user-comment .click-like-comment {
+    display: flex;
+    column-gap: 10px;
+    font-size: 15px;
+    height: 20px;
+    outline: none;
+    border: none;
+}
+
+.box-content-comment-ratting .content-user-comment .click-like-comment .icon-like-comment-user-clicked {
+    font-size: 20px;
+}
+
+.box-content-comment-ratting .content-user-comment .click-like-comment button {
+    outline: none;
+    border: none;
+}
+
+.box-content-comment-ratting .content-user-comment .click-like-comment p {
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    padding-top: 15px;
+}
+
+.box-content-comment-ratting .dot-delete-comment {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    font-size: 22px;
+}
+
+.box-content-comment-ratting .dot-delete-comment button {
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    outline: none;
+    color: blue;
+    border-radius: 100px;
+    width: 25px;
+}

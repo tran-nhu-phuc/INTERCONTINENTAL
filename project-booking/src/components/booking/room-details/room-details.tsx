@@ -24,7 +24,7 @@ const CustomNextButton: React.FC<CustomButtonProps> = ({ onClick }) => (
 interface Props {
   handelOpenPopup: Function;
   dataRoom: Room;
-  selectedImage: [];
+  selectedImage: any;
 }
 const RoomDetails: React.FC<Props> = (props: Props) => {
   const carouselSettings = {
@@ -55,9 +55,11 @@ const RoomDetails: React.FC<Props> = (props: Props) => {
             }) => <CustomNextButton onClick={nextSlide} />}
             {...carouselSettings}
           >
-            {props.selectedImage?.map((itemImage: string, index: number) => (
-              <img src={itemImage} alt="slide" key={index}></img>
-            ))}
+            <img src={props.selectedImage?.linkImage1} alt="slide"></img>
+            <img src={props.selectedImage?.linkImage2} alt="slide"></img>
+            <img src={props.selectedImage?.linkImage3} alt="slide"></img>
+            <img src={props.selectedImage?.linkImage4} alt="slide"></img>
+            <img src={props.selectedImage?.linkImage5} alt="slide"></img>
           </Carousel>
           <p className="club-details">Club Terrace Suite terrace</p>
           <p className="stocked-luxury">

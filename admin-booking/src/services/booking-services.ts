@@ -1,6 +1,6 @@
 import BookingRepository from "../repositories/booking-repository";
 class BookingService {
-  private bookingRepository: any;
+  private bookingRepository: BookingRepository;
   constructor() {
     this.bookingRepository = new BookingRepository();
   }
@@ -35,6 +35,9 @@ class BookingService {
     } catch (error) {
       throw error;
     }
+  }
+  async getAllPriceByDay() {
+    return await this.bookingRepository.getAllPriceByDay();
   }
 }
 

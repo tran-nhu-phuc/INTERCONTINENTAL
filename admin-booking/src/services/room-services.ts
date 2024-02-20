@@ -31,5 +31,11 @@ class RoomSerVices {
     const res = await this.repository.deleteRoom(id);
     return res;
   }
+  async uploadRoom(formData: any, id: number, dataKey: string) {
+    return await this.repository.uploadRoom(formData, id, dataKey);
+  }
+  async update(id: number, formData: any) {
+    return await this.repository.update(formData, id);
+  }
 }
 export default RoomSerVices;

@@ -12,6 +12,8 @@ import RadioPayment from "./radio-payment/radio-payment";
 import PaypalComponent from "./paypal/paypal";
 import { Booking } from "../../type/type";
 import OrderService from "../../services/order-service";
+import Voucher from "../voucher/voucher";
+import toast from "react-hot-toast";
 const Payment = () => {
   const navigate = useNavigate();
   const dataSes: Booking = JSON.parse(
@@ -20,18 +22,28 @@ const Payment = () => {
   const [current, setCurrent] = useState<number>(0);
   const [dataRoom, setDataRoom] = useState<any>();
   const [valueSelected, setValueSelected] = useState<string>("");
-  const handelPostBooking = () => {
+  const { id } = useParams() as string | any;
+  const [isOpenVoucher, setIsOpenVoucher] = useState<boolean>(false);
+  const [voucherDiscount, setVoucherDiscount] = useState<number>(0);
+  const handleVoucherDiscount = (discount: number) => {
+    setVoucherDiscount(discount);
+  };
+  console.log(voucherDiscount);
+  const handleOpenVoucher = (status: boolean) => {
+    setIsOpenVoucher(status);
+  };
+  const handelPostBooking = async () => {
     try {
       const postDataBooking = new OrderService();
-      const setStockRoom = new RoomService();
-      setStockRoom.setStockRoom(dataSes.idRoom, {
-        stock: Number(dataRoom.stock) - Number(dataSes.countRoom),
+      await postDataBooking.postBooking({
+        ...dataSes,
+        paymentType: 1,
       });
-      postDataBooking.postBooking({ ...dataSes, pay: 1 });
       message.success("Processing complete!");
       navigate("/booking");
     } catch (error) {
-      return message.error("Error post");
+      toast.error("Error");
+      console.log(message.error("Error post"));
     }
   };
   const handleChangeSelected = (value: string) => {
@@ -61,22 +73,19 @@ const Payment = () => {
   const prev = () => {
     setCurrent(current - 1);
   };
-  const { id } = useParams() as string | any;
   const roomServices: RoomService = new RoomService();
-  try {
-  } catch (error) {}
   useEffect(() => {
     const getRoomById = async () => {
       try {
         const dataRoomService = await roomServices.getInformation(id);
-        setDataRoom(dataRoomService.data);
+        setDataRoom(dataRoomService?.data);
       } catch (error) {
-        return error;
+        console.log(error);
       }
     };
     getRoomById();
   }, []);
-  const items = steps.map((item) => ({ key: item.title, title: item.title }));
+  const items = steps.map((item) => ({ key: item?.title, title: item?.title }));
   return (
     <div className="payment-table">
       <Steps current={current} items={items} className="step-payment" />
@@ -105,11 +114,15 @@ const Payment = () => {
           </div>
         </div>
         <div className="side-payment">
-          <SideBarPayment dataRoom={dataRoom} />
+          <SideBarPayment
+            dataRoom={dataRoom}
+            handleOpenVoucher={handleOpenVoucher}
+            voucherDiscount={voucherDiscount}
+          />
         </div>
       </div>
       <div style={{ marginTop: 24 }} className="next-payment">
-        {current < steps.length - 1 && (
+        {current < steps?.length - 1 && (
           <Button
             type="primary"
             onClick={() => next()}
@@ -118,10 +131,13 @@ const Payment = () => {
             Continue
           </Button>
         )}
-        {current === steps.length - 1 &&
+        {current === steps?.length - 1 &&
           (valueSelected === "payCard" ? (
             <PaypalComponent
-              amount={Number(dataSes.countRoom) * Number(dataSes.totalPrice)}
+              amount={
+                (1 - Number(voucherDiscount) / 100) *
+                Number(dataSes?.totalPrice)
+              }
             />
           ) : (
             <Button
@@ -138,6 +154,12 @@ const Payment = () => {
           </Button>
         )}
       </div>
+      {isOpenVoucher ? (
+        <Voucher
+          handleOpenVoucher={handleOpenVoucher}
+          handleVoucherDiscount={handleVoucherDiscount}
+        />
+      ) : null}
     </div>
   );
 };

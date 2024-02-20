@@ -1,7 +1,6 @@
 import React, { memo, useState } from "react";
 import "./login.css";
 import FormLogin from "./login-form-data/login-form-data";
-import toast, { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 interface Props {
   handelClickPopUpLogin: Function;

@@ -1,18 +1,27 @@
 .table-dashboard-admin {
     width: 100%;
-    padding: 50px;
-    overflow-y: hidden;
+    overflow: hidden;
+    padding: 20px 40px 0 40px;
+
 }
 
 .dashboard-admin {
     display: grid;
     grid-template-columns: auto auto auto;
     overflow: hidden;
+
+}
+
+.header-chart-dash-board {
+    font-size: 30px;
+    text-align: center;
+    width: 100%;
 }
 
 .dashboard-admin .box-item-dashboard-chart {
     grid-column-start: 1;
     grid-column-end: 4;
+    overflow: hidden;
 }
 
 .dashboard-admin div {

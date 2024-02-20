@@ -9,6 +9,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { Booking } from "../../type/type";
 import RoomService from "../../services/room-service";
 import OrderRepository from "../../repositories/order-repositories";
+import CategoryService from "../../services/categoty-service";
 const BookingComponent = () => {
   const updateSearch = useSelector((state: any) => state.updateSearch);
   const [changeSearch, setChangeSearch] = useState<boolean>(false);
@@ -17,29 +18,24 @@ const BookingComponent = () => {
   const [changeMoney, setChangeMoney] = useState<string>("");
   const [sortNameRoom, setSortNameRoom] = useState<string>("");
   const [getSes, setGetSes] = useState<any>(null);
+  const [dataCategory, setDataCategory] = useState<any>();
+  const [endPointQuery, setEndPointQuery] = useState<string>("");
   const location = useLocation();
+  const handleViewMore = (limit: number) => {
+    setEndPointQuery(`/?limit=${limit}`);
+  };
   useEffect(() => {
     const data = JSON.parse(sessionStorage.getItem("data_search") as string);
     setGetSes(data);
   }, [updateSearch]);
   useEffect(() => {
     const handlePaymentSuccess = async () => {
-      console.log("aaaaa");
-
       try {
         const dataSes: Booking = await JSON.parse(
           sessionStorage.getItem("data_payment") as string
         );
-        const roomServices = new RoomService();
         const postDataBooking = new OrderRepository();
-        const dataRoomService = await roomServices.getInformation(
-          dataSes.idRoom
-        );
-        console.log(dataRoomService);
-        await roomServices.setStockRoom(dataSes.idRoom, {
-          stock: Number(dataRoomService.data.stock) - Number(dataSes.countRoom),
-        });
-        await postDataBooking.postBooking({ ...dataSes, pay: 2 });
+        await postDataBooking.postBooking({ ...dataSes, paymentType: 2 });
       } catch (error) {
         console.log(error);
         return error;
@@ -48,6 +44,7 @@ const BookingComponent = () => {
     if (location.state === "history") {
       handlePaymentSuccess();
       location.state = "history-1";
+      sessionStorage.removeItem("data_payment");
     }
   }, []);
   const handelChangePrice = (e: any) => {
@@ -69,6 +66,18 @@ const BookingComponent = () => {
   const handelClickScrollToTop = () => {
     window.scrollTo(0, 0);
   };
+  useEffect(() => {
+    const handleCategory = async () => {
+      try {
+        const categoryService = new CategoryService();
+        const dataCategory = await categoryService.getAll();
+        setDataCategory([...dataCategory.data]);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    handleCategory();
+  }, []);
   return (
     <main className="booking-table-search">
       <div className="booking-page">
@@ -80,13 +89,13 @@ const BookingComponent = () => {
             <div className="data-before">
               <span>Bai Bac, SonTra Peninsula, Danang, VN</span>|
               <span>
-                {getSes?.dataStart} - {getSes?.dateEnd}
+                {getSes?.timeCheckIn} - {getSes?.timeCheckOut}
               </span>
               |
               <span>
-                {Number(getSes?.countUser) + Number(getSes?.countChild)} Guest
+                {Number(getSes?.numberUser) + Number(getSes?.numberChild)} Guest
               </span>
-              |<span>{getSes?.numberRoom} Room</span>
+              |<span>{getSes?.numberRooms} Room</span>
             </div>
             <div className="click-table-change-search">
               <p>Thay đổi</p>
@@ -109,13 +118,14 @@ const BookingComponent = () => {
           <select
             onChange={(e: any) => {
               setSortNameRoom(e.target.value);
+              handleViewMore(1000);
             }}
             value={sortNameRoom}
           >
             <option value={""}>Any</option>
-            <option value={"King"}>King</option>
-            <option value={"Bedroom"}>Bed Room</option>
-            <option value={"Queen"}>Queen</option>
+            {dataCategory?.map((item: any) => {
+              return <option value={`${item.id}`}>{item.name}</option>;
+            })}
           </select>
         </div>
         <div className="select-money">
@@ -132,14 +142,20 @@ const BookingComponent = () => {
           dataPrice={dataPrice}
           changeMoney={changeMoney}
           sortNameRoom={sortNameRoom}
+          endPointQuery={endPointQuery}
         />
       </div>
       <div className="text-last-page">
         <p>Rates reflect average nightly rate for one room.</p>
       </div>
       <div className="more-item-booking">
-        <p onClick={() => setMoreItemBooking(!moreItemBooking)}>
-          {moreItemBooking ? "More" : "Least"} information
+        <p
+          onClick={() => {
+            setMoreItemBooking(!moreItemBooking);
+            moreItemBooking ? handleViewMore(7) : handleViewMore(1000);
+          }}
+        >
+          {moreItemBooking ? "Least" : "More"} information
           {moreItemBooking ? <FaChevronUp /> : <FaChevronDown />}
         </p>
       </div>

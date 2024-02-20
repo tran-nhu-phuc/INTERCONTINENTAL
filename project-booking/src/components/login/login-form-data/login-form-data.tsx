@@ -1,9 +1,11 @@
+import "./login-form-data.css";
 import React, { memo, useState } from "react";
 import { useDispatch } from "react-redux";
 import { onLogin } from "../../../store/reducer/user";
 import { useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import Loading from "../../../common/loading";
+import ForgotPassword from "../../forgot-password/forgot-password";
 export interface Login {
   email: string;
   password: string;
@@ -13,8 +15,12 @@ interface Props {
 }
 const FormLogin: React.FC<Props> = (props: Props) => {
   const [loading, setLoading] = useState<boolean>(false);
+  const [isForgotPassword, setIsForgotPassword] = useState<boolean>(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const handleForGotPassword = (status: boolean) => {
+    setIsForgotPassword(status);
+  };
   const [dataLogin, setDataLogin] = useState<Login>({
     email: "",
     password: "",
@@ -57,15 +63,15 @@ const FormLogin: React.FC<Props> = (props: Props) => {
     try {
       if (errorFormLogin.email === "" && errorFormLogin.password === "") {
         const res = await dispatch(onLogin(dataLogin) as any).unwrap();
-        if (res?.response?.status == 400) {
-          setLoading(false);
-          toast(res.response.data);
-          return;
-        }
-        if (res?.status == 201 || res?.status == 200) {
+        if (res?.status === 201 || res?.status === 200) {
           setLoading(false);
           navigate("/");
           props.handelClickPopUpLogin();
+          return;
+        } else {
+          setLoading(false);
+          toast(res.response.data);
+          return;
         }
       }
     } catch (error) {
@@ -111,6 +117,15 @@ const FormLogin: React.FC<Props> = (props: Props) => {
       <div className="btn-login-submit">
         <button onClick={handelSubmitLogin}>Đăng nhập</button>
       </div>
+      <span
+        className="forgot-password-login"
+        onClick={() => handleForGotPassword(true)}
+      >
+        Forgot password!
+      </span>
+      {isForgotPassword ? (
+        <ForgotPassword handleForGotPassword={handleForGotPassword} />
+      ) : null}
     </div>
   );
 };
