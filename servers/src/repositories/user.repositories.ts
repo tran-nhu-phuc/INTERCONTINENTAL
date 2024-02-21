@@ -1,6 +1,7 @@
 import { Op } from "sequelize";
 import User from "../entities/user.table";
 import Point from "../entities/point.table";
+import { UsersType } from "../types/user.type";
 
 class UserRepository {
   async register(newDataUser: any) {
@@ -45,7 +46,7 @@ class UserRepository {
   async getInFo(id: number) {
     return await User.findOne({ where: { id }, include: Point });
   }
-  async updateProfile(id: number, newData: any) {
+  async updateProfile(id: number, newData: UsersType) {
     return await User.update(
       { ...newData },
       {

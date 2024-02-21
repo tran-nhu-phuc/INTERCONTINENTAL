@@ -2,21 +2,29 @@ import express, { Request, Response } from "express";
 import VoucherService from "../services/voucher.services";
 import AuthorLogin from "../middlewares/check-authen.middleware";
 import checkRolesUsers from "../middlewares/check-role-user.middleware";
+import checkStatusUsers from "../middlewares/check-status.middleware";
 const voucherController = express.Router();
 const voucherServices = new VoucherService();
 voucherController
-  .get("/", async (req: Request, res: Response) => {
-    try {
-      const result = await voucherServices.getAll();
-      res.status(200).json(result);
-    } catch (error) {
-      res.status(404).json(error);
+  .get(
+    "/",
+    AuthorLogin,
+    checkRolesUsers,
+    checkStatusUsers,
+    async (req: Request, res: Response) => {
+      try {
+        const result = await voucherServices.getAll();
+        res.status(200).json(result);
+      } catch (error) {
+        res.status(404).json(error);
+      }
     }
-  })
+  )
   .post(
     "/add-voucher",
     AuthorLogin,
     checkRolesUsers,
+    checkStatusUsers,
     async (req: Request, res: Response) => {
       try {
         const newDataVoucher = {
@@ -39,6 +47,7 @@ voucherController
     "/voucher/:idUser",
     AuthorLogin,
     checkRolesUsers,
+    checkStatusUsers,
     async (req: Request, res: Response) => {
       try {
         const idUser = Number(req.params.idUser);
@@ -54,6 +63,7 @@ voucherController
     "/voucher-date-vacation",
     AuthorLogin,
     checkRolesUsers,
+    checkStatusUsers,
     async (req: Request, res: Response) => {
       try {
         const dateNow = req.body.dateNow;
@@ -65,26 +75,32 @@ voucherController
       }
     }
   )
-  .patch("/use-voucher/:id", async (req: Request, res: Response) => {
-    try {
-      const id = Number(req.params.id);
-      const idUser = Number(req.body.userId);
-      const result = await voucherServices.getInFo(id, idUser);
-      if (result?.status) {
-        res.cookie("voucher", result, {
-          expires: new Date(Date.now() + 1200000),
-          httpOnly: true,
-        });
-        res.status(200).json(1);
-      } else {
-        res.cookie("voucher", result, {
-          expires: new Date(Date.now() + 1200000),
-          httpOnly: true,
-        });
-        res.status(400).json(2);
+  .patch(
+    "/use-voucher/:id",
+    AuthorLogin,
+    checkRolesUsers,
+    checkStatusUsers,
+    async (req: Request, res: Response) => {
+      try {
+        const id = Number(req.params.id);
+        const idUser = Number(req.body.userId);
+        const result = await voucherServices.getInFo(id, idUser);
+        if (result?.status) {
+          res.cookie("voucher", result, {
+            expires: new Date(Date.now() + 1200000),
+            httpOnly: true,
+          });
+          res.status(200).json(1);
+        } else {
+          res.cookie("voucher", result, {
+            expires: new Date(Date.now() + 1200000),
+            httpOnly: true,
+          });
+          res.status(400).json(2);
+        }
+      } catch (error) {
+        res.status(404).json(error);
       }
-    } catch (error) {
-      res.status(404).json(error);
     }
-  });
+  );
 export default voucherController;

@@ -8,7 +8,8 @@ import * as dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import session from "express-session";
 import path from "path";
-//config file .env
+import http from "http";
+import { Server, Socket } from "socket.io"; //config file .env
 dotenv.config();
 //create server with express
 const server = express();
@@ -36,10 +37,47 @@ server.use(urlencoded());
 server.use(bodyParser.json());
 //database
 sequelize.authenticate();
+//socket
+const app = http.createServer(server);
+const io = new Server(app, {
+  cors: {
+    origin: [
+      "http://localhost:3000",
+      "http://localhost:5000",
+      "http://localhost:3001",
+    ],
+  },
+});
+
+io.on("connection", (socket: Socket) => {
+  socket.on("blockUser", (userId: any) => {
+    io.emit("logout", userId);
+  });
+  socket.on("commentNew", (roomId: any) => {
+    console.log(roomId);
+    io.emit("comment", roomId);
+  });
+  socket.on("commentLike", (commentId: any) => {
+    console.log(commentId);
+    io.emit("like", commentId);
+  });
+  socket.on("commentDelete", (commentId: any) => {
+    console.log(commentId);
+    io.emit("delete", commentId);
+  });
+  // socket.on("disconnect", () => {
+  //   console.log("Client disconnected");
+  // });
+});
+//
 //connect client
 server.use(
   cors({
-    origin: ["http://localhost:3000", "http://localhost:3001"],
+    origin: [
+      "http://localhost:3000",
+      "http://localhost:3001",
+      "http://localhost:5000",
+    ],
     credentials: true,
     optionsSuccessStatus: 200,
   })
@@ -49,6 +87,6 @@ Router(server);
 //create entity table db
 createTable();
 //address server
-server.listen(port, () => {
+app.listen(port, () => {
   console.log(`server on port ${port}`);
 });

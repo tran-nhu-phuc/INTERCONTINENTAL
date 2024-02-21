@@ -20,10 +20,12 @@ class UserService {
   }
   async login(formData: UsersTypeLogin) {
     try {
-      const checkUser = await this.userRepository.login(formData.email);
+      const checkUser = await this.userRepository.login(
+        formData.email as string
+      );
       if (checkUser?.dataValues) {
         const compareDataUser = bcrypt.compareSync(
-          formData.password,
+          formData.password as string,
           checkUser.dataValues.password
         );
         const { password, createAt, updateAt, ...userData } =
@@ -70,7 +72,7 @@ class UserService {
     const result = await this.userRepository.getInFo(id);
     return result;
   }
-  async updateProfile(id: number, newData: any) {
+  async updateProfile(id: number, newData: UsersType) {
     const result = await this.userRepository.updateProfile(id, newData);
     return result;
   }

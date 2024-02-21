@@ -1,14 +1,14 @@
 import LikeRepository from "../repositories/like.repositories";
-
+import { LikeCreateTypes } from "../types/likes";
 class LikeService {
   private repository: LikeRepository;
   constructor() {
     this.repository = new LikeRepository();
   }
-  async addNewLike(newData: any) {
+  async addNewLike(newData: LikeCreateTypes) {
     const result = await this.repository.findLike(
-      newData.commentId,
-      newData.userId
+      newData.commentId as number,
+      newData.userId as number
     );
     if (result === null) {
       return await this.repository.addNewLike(newData);

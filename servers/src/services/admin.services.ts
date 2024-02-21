@@ -1,20 +1,23 @@
 import AdminRepository from "../repositories/admin.repositories";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import { AdminTypes } from "../types/admin";
 class AdminService {
   private repository: AdminRepository;
   constructor() {
     this.repository = new AdminRepository();
   }
-  async createAdmin(newData: any) {
+  async createAdmin(newData: AdminTypes) {
     return await this.repository.createAdmin(newData);
   }
-  async loginAdmin(dataForm: any) {
+  async loginAdmin(dataForm: AdminTypes) {
     try {
-      const checkUser = await this.repository.loginAdmin(dataForm.email);
+      const checkUser = await this.repository.loginAdmin(
+        dataForm?.email as string
+      );
       if (checkUser?.dataValues) {
         const compareDataUser = bcrypt.compareSync(
-          dataForm.password,
+          dataForm?.password as string,
           checkUser.dataValues.password
         );
         const { password, createAt, updateAt, ...userData } =
@@ -35,7 +38,7 @@ class AdminService {
       throw error;
     }
   }
-  async updateAdmin(id: number, newData: any) {
+  async updateAdmin(id: number, newData: AdminTypes) {
     return await this.repository.updateAdmin(id, newData);
   }
 }

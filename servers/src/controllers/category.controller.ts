@@ -2,6 +2,7 @@ import express, { Request, Response } from "express";
 import CategoryService from "../services/category.services";
 import checkRolesUsers from "../middlewares/check-role-user.middleware";
 import AuthorLogin from "../middlewares/check-authen.middleware";
+import checkStatusUsers from "../middlewares/check-status.middleware";
 const categoryController = express.Router();
 const categoryServices = new CategoryService();
 categoryController
@@ -9,6 +10,7 @@ categoryController
     "/add-category",
     AuthorLogin,
     checkRolesUsers,
+    checkStatusUsers,
     async (req: Request, res: Response) => {
       try {
         const newDataCategory = {
@@ -21,21 +23,33 @@ categoryController
       }
     }
   )
-  .get("/", async (req: Request, res: Response) => {
-    try {
-      const result = await categoryServices.getAll();
-      res.status(200).json(result);
-    } catch (error) {
-      res.json(error);
+  .get(
+    "/",
+    AuthorLogin,
+    checkRolesUsers,
+    checkStatusUsers,
+    async (req: Request, res: Response) => {
+      try {
+        const result = await categoryServices.getAll();
+        res.status(200).json(result);
+      } catch (error) {
+        res.json(error);
+      }
     }
-  })
-  .delete("/remove-category/:id", async (req: Request, res: Response) => {
-    try {
-      const id = Number(req.params.id);
-      const result = await categoryServices.removeCategory(id);
-      res.status(204).json(result);
-    } catch (error) {
-      res.status(404).json(error);
+  )
+  .delete(
+    "/remove-category/:id",
+    AuthorLogin,
+    checkRolesUsers,
+    checkStatusUsers,
+    async (req: Request, res: Response) => {
+      try {
+        const id = Number(req.params.id);
+        const result = await categoryServices.removeCategory(id);
+        res.status(204).json(result);
+      } catch (error) {
+        res.status(404).json(error);
+      }
     }
-  });
+  );
 export default categoryController;

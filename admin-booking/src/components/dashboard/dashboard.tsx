@@ -24,8 +24,6 @@ const DashBoard = () => {
         const resultDataUser = await userServices.getAllUser();
         setDataUser([...resultDataUser.data]);
         const resultDataThirtyDay = await bookingServices.getAllPriceByDay();
-        console.log(resultDataThirtyDay);
-
         setDataThirtyDay([...resultDataThirtyDay?.data] || []);
       } catch (error) {
         console.log(error);
@@ -33,8 +31,6 @@ const DashBoard = () => {
     };
     handleCallData();
   }, []);
-  console.log(dataThirtyDay);
-
   return (
     <div className="table-dashboard-admin">
       <h1 className="header-admin">Dashboard</h1>

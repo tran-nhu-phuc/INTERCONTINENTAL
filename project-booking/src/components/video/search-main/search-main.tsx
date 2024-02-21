@@ -86,6 +86,7 @@ const Search = () => {
                 <label>Số phòng</label>
                 <div className="box-select">
                   <select
+                    aria-label="State"
                     name="numberRoom"
                     value={numberRoom}
                     onChange={(e: any) =>
@@ -107,6 +108,7 @@ const Search = () => {
                 <label>Người lớn</label>
                 <div className="box-select">
                   <select
+                    aria-label="State"
                     name="countUser"
                     value={countUser}
                     onChange={(e: any) =>
@@ -141,6 +143,7 @@ const Search = () => {
                 <label>Trẻ em</label>
                 <div className="box-select">
                   <select
+                    aria-label="State"
                     name="countChild"
                     onChange={(e: any) =>
                       setCountChild(

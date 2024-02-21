@@ -25,6 +25,8 @@ const QrCode: React.FC<Props> = (props: Props) => {
   const dataBooking = JSON.parse(
     localStorage.getItem("data_booking") as string
   );
+  console.log(dataBooking);
+
   const handleRemoveBooking = async () => {
     try {
       const bookingService = new OrderService();
@@ -46,7 +48,10 @@ const QrCode: React.FC<Props> = (props: Props) => {
   return (
     <div className="box-qr-code">
       <div className="table-qr-code">
-        <img src="/asset/image-header-home/image-header-home-3.svg" alt="" />
+        <img
+          src="https://th.bing.com/th/id/R.dac6ac7b9b93ade37f386b44c27fa8e0?rik=7fkA4FhB0QWV8g&pid=ImgRaw&r=0"
+          alt=""
+        />
         <h5>Show QR to check in</h5>
         <div id="myqrcode">
           <QRCode
@@ -58,12 +63,16 @@ const QrCode: React.FC<Props> = (props: Props) => {
           <Button type="primary" onClick={downloadQRCode}>
             Download
           </Button>
-          <button
-            className="btn-out-booking-item"
-            onClick={handleRemoveBooking}
-          >
-            Cancel the room
-          </button>
+          {dataBooking?.paymentType == 1 ? (
+            <button
+              className="btn-out-booking-item"
+              onClick={handleRemoveBooking}
+            >
+              Cancel the room
+            </button>
+          ) : (
+            <span></span>
+          )}
         </div>
         <button
           className="close-model-qr-code"

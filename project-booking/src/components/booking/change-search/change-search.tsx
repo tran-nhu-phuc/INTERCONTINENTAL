@@ -80,6 +80,7 @@ const ChanSearch = () => {
             <label>Số phòng</label>
             <div className="box-select">
               <select
+                aria-label="State"
                 name="room"
                 value={numberRoom}
                 onChange={(e: any) => {
@@ -101,6 +102,7 @@ const ChanSearch = () => {
             <label>Người lớn</label>
             <div className="box-select">
               <select
+                aria-label="State"
                 name="room"
                 value={countUser}
                 onChange={(e: any) => {
@@ -137,6 +139,7 @@ const ChanSearch = () => {
             <label>Trẻ em</label>
             <div className="box-select">
               <select
+                aria-label="State"
                 name="room"
                 value={countChild}
                 onChange={(e: any) => {

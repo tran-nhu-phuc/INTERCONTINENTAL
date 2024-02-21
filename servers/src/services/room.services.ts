@@ -1,12 +1,12 @@
 import RoomRepository from "../repositories/room.repositories";
-import { UpdateRoom } from "../types/room.type";
+import { CreateRoomType, UpdateRoom } from "../types/room.type";
 
 class RoomService {
   private repository: RoomRepository;
   constructor() {
     this.repository = new RoomRepository();
   }
-  async CreateRoom(newDataRoom: any) {
+  async CreateRoom(newDataRoom: CreateRoomType) {
     return await this.repository.CreateRoom(newDataRoom);
   }
   async getAll(sort: any, limit: number, page: number) {
@@ -30,7 +30,7 @@ class RoomService {
   async updateRoom(id: number, newData: UpdateRoom) {
     return await this.repository.updateRoom(id, newData);
   }
-  async uploadRoom(newData: any, id: number) {
+  async uploadRoom(newData: CreateRoomType, id: number) {
     const result = await this.repository.uploadRoom(newData, id);
     if (result[0] !== 0) {
       return 1;
@@ -39,7 +39,10 @@ class RoomService {
     }
   }
   async getAllForAdmin() {
-    return await this.repository.getAllForAdmin();
+    const result = await this.repository.getAllForAdmin();
+    return result?.filter((item: any) => {
+      return item.isDelete !== true;
+    });
   }
 }
 export default RoomService;

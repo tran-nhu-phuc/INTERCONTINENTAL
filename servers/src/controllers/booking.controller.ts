@@ -3,6 +3,7 @@ import BookingService from "../services/booking.services";
 import AuthorLogin from "../middlewares/check-authen.middleware";
 import checkRolesUsers from "../middlewares/check-role-user.middleware";
 import { BookingTypes } from "../types/bookings";
+import checkStatusUsers from "../middlewares/check-status.middleware";
 const bookingController = express.Router();
 const bookingServices = new BookingService();
 bookingController
@@ -10,6 +11,7 @@ bookingController
     "/",
     AuthorLogin,
     checkRolesUsers,
+    checkStatusUsers,
     async (req: Request, res: Response) => {
       try {
         const sort = req.query.sort || undefined;
@@ -26,6 +28,7 @@ bookingController
     "/info/:id",
     AuthorLogin,
     checkRolesUsers,
+    checkStatusUsers,
     async (req: Request, res: Response) => {
       try {
         const id = Number(req.params.id);
@@ -36,19 +39,26 @@ bookingController
       }
     }
   )
-  .get("/get-by-user/:idUser", async (req: Request, res: Response) => {
-    try {
-      const id = Number(req.params.idUser);
-      const result = await bookingServices.getByUser(id);
-      res.status(200).json(result);
-    } catch (error) {
-      res.json(error);
+  .get(
+    "/get-by-user/:idUser",
+    AuthorLogin,
+    checkRolesUsers,
+    checkStatusUsers,
+    async (req: Request, res: Response) => {
+      try {
+        const id = Number(req.params.idUser);
+        const result = await bookingServices.getByUser(id);
+        res.status(200).json(result);
+      } catch (error) {
+        res.json(error);
+      }
     }
-  })
+  )
   .post(
     "/add-booking",
     AuthorLogin,
     checkRolesUsers,
+    checkStatusUsers,
     async (req: Request, res: Response) => {
       try {
         const voucher = req?.cookies?.voucher?.voucher || 0;
@@ -87,6 +97,7 @@ bookingController
     "/update-status-booking/:id",
     AuthorLogin,
     checkRolesUsers,
+    checkStatusUsers,
     async (req: Request, res: Response) => {
       try {
         const id = Number(req.params.id);
@@ -102,6 +113,7 @@ bookingController
     "/remove-booking/:id",
     AuthorLogin,
     checkRolesUsers,
+    checkStatusUsers,
     async (req: Request, res: Response) => {
       try {
         const id = Number(req.params.id);
@@ -116,6 +128,7 @@ bookingController
     "/price-in-thirty-day",
     AuthorLogin,
     checkRolesUsers,
+    checkStatusUsers,
     async (req: Request, res: Response) => {
       try {
         const result = await bookingServices.priceInThirtyDay();

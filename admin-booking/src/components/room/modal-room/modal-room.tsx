@@ -9,8 +9,6 @@ interface Props {
   handelCallBackApi: Function;
 }
 const ModalRoom: React.FC<Props> = (props: Props) => {
-  console.log(props.dataIndexRoom);
-
   const [loading, setLoading] = useState<boolean>(false);
   const [getValueRoom, setGetValueRoom] = useState<any>();
   const [selectedFile, setSelectedFile] = useState<any>();
@@ -93,7 +91,9 @@ const ModalRoom: React.FC<Props> = (props: Props) => {
           Number(props?.dataIndexRoom?.id),
           getValueRoom
         );
-        if (result.data[0] !== 0) {
+        console.log(result);
+
+        if (result?.data[0] !== 0) {
           toast.success("Success Edit Data Room");
           props.handelCancelEdit(false);
           setLoading(false);

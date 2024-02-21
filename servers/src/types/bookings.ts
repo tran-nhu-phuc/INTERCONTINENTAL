@@ -20,4 +20,6 @@ export interface BookingTypes {
   paymentType?: number;
   isVouchers?: number;
   firstPrice?: number;
+  createdAt?: string;
+  updatedAt?: string;
 }

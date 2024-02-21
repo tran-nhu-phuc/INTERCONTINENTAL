@@ -3,12 +3,13 @@ import "./writing-comment.css";
 import { Form, Button, Input } from "antd";
 import CommentService from "../../services/comment-services";
 import toast, { Toaster } from "react-hot-toast";
+import useSocket from "../../hooks/useSocket";
 interface Props {
   userId: number;
   idRoom: number;
-  handleChangeCallComment: Function;
 }
 const CommentWriting: React.FC<Props> = (props: Props) => {
+  const socket = useSocket();
   const [value, setValue] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const onChange = (e: any) => {
@@ -26,7 +27,9 @@ const CommentWriting: React.FC<Props> = (props: Props) => {
         const result = await commentServices.addNewComment(newData);
         if (result.data) {
           toast.success("thank you for your comment");
-          props.handleChangeCallComment();
+          socket.emit(`commentNew`, {
+            roomId: props?.idRoom,
+          });
           setSubmitting(true);
           setTimeout(() => {
             setSubmitting(false);

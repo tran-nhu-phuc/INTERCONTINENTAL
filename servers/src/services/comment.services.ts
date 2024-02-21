@@ -1,5 +1,6 @@
 import Comment from "../entities/comment.table";
 import CommentRepository from "../repositories/comment.repositories";
+import { CommentTypes } from "../types/comment";
 
 class CommentService {
   private repository: CommentRepository;
@@ -10,10 +11,10 @@ class CommentService {
     let offset = Math.ceil((page - 1) * limit);
     return await this.repository.getAllByRoom(sort, limit, offset, idRoom);
   }
-  async createComment(newData: any) {
+  async createComment(newData: CommentTypes) {
     return await this.repository.createComment(newData);
   }
-  async updateComment(id: number, newData: any) {
+  async updateComment(id: number, newData: CommentTypes) {
     return await this.repository.updateComment(id, newData);
   }
   async removeComment(id: number) {

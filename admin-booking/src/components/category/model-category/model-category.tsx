@@ -15,8 +15,7 @@ const ModelCategory: React.FC<Props> = (props: Props) => {
           name: newName,
         };
         const categoryService = new CategoryServices();
-        const result = await categoryService.addNew(newData);
-        console.log(result);
+        await categoryService.addNew(newData);
         toast.success("Success Create");
         props.handleOpenPopUp(false);
         props.handleCallBackApi();

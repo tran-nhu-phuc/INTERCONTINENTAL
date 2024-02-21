@@ -211,8 +211,6 @@ const Category = () => {
       dataIndex: "Action",
       width: "10%",
       render(dataIndex, record) {
-        console.log(dataIndex);
-
         return (
           <>
             <div className="action-btn">

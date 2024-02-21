@@ -2,6 +2,7 @@ import express, { Request, Response } from "express";
 import checkRolesUsers from "../middlewares/check-role-user.middleware";
 import AuthorLogin from "../middlewares/check-authen.middleware";
 import LikeService from "../services/like.services";
+import checkStatusUsers from "../middlewares/check-status.middleware";
 const likeController = express.Router();
 const likeServices = new LikeService();
 likeController
@@ -9,6 +10,7 @@ likeController
     "/add-like",
     AuthorLogin,
     checkRolesUsers,
+    checkStatusUsers,
     async (req: Request, res: Response) => {
       try {
         const newData = {
@@ -26,6 +28,7 @@ likeController
     "/remove-like/:id",
     AuthorLogin,
     checkRolesUsers,
+    checkStatusUsers,
     async (req: Request, res: Response) => {
       try {
         const id = Number(req.params.id);

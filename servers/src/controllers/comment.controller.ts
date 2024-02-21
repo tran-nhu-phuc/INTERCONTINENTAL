@@ -2,6 +2,7 @@ import express, { Request, Response } from "express";
 import CommentService from "../services/comment.services";
 import checkRolesUsers from "../middlewares/check-role-user.middleware";
 import AuthorLogin from "../middlewares/check-authen.middleware";
+import checkStatusUsers from "../middlewares/check-status.middleware";
 const commentController = express.Router();
 const commentServices = new CommentService();
 commentController
@@ -26,6 +27,7 @@ commentController
     "/add-comment",
     AuthorLogin,
     checkRolesUsers,
+    checkStatusUsers,
     async (req: Request, res: Response) => {
       try {
         const newData = {
@@ -44,6 +46,7 @@ commentController
     "/update-comment/:id",
     AuthorLogin,
     checkRolesUsers,
+    checkStatusUsers,
     async (req: Request, res: Response) => {
       try {
         const id = Number(req.params.id);
@@ -61,6 +64,7 @@ commentController
     "/remove-comment/:id",
     AuthorLogin,
     checkRolesUsers,
+    checkStatusUsers,
     async (req: Request, res: Response) => {
       try {
         const id = Number(req.params.id);

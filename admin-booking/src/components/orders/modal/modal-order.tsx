@@ -10,12 +10,8 @@ interface Props {
 }
 const ModalOrder: React.FC<Props> = (props: Props) => {
   const [loading, setLoading] = useState<boolean>(false);
-  console.log(props.dataCodeOrder);
-
   const [editDataStatusOrder, setEditDataStatusOrder] =
     useState<HTMLInputElement>();
-  console.log(editDataStatusOrder);
-
   const handelEditOrder = async () => {
     setLoading(true);
     try {
@@ -56,6 +52,7 @@ const ModalOrder: React.FC<Props> = (props: Props) => {
         <h2>Edit Booking</h2>
         <div className="select-order-admin">
           <select
+            aria-label="State"
             defaultValue={value}
             onChange={(e: any) => setEditDataStatusOrder(e.target.value)}
           >

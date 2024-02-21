@@ -2,6 +2,7 @@ import express, { Request, Response } from "express";
 import RateService from "../services/ratting.services";
 import AuthorLogin from "../middlewares/check-authen.middleware";
 import checkRolesUsers from "../middlewares/check-role-user.middleware";
+import checkStatusUsers from "../middlewares/check-status.middleware";
 const rateController = express.Router();
 const rateServices = new RateService();
 rateController
@@ -9,6 +10,7 @@ rateController
     "/add-rate",
     AuthorLogin,
     checkRolesUsers,
+    checkStatusUsers,
     async (req: Request, res: Response) => {
       try {
         const newDataRate = {
@@ -27,6 +29,7 @@ rateController
     "/get-all-by-room/:idRoom",
     AuthorLogin,
     checkRolesUsers,
+    checkStatusUsers,
     async (req: Request, res: Response) => {
       try {
         const roomId = Number(req.params.idRoom);
@@ -41,6 +44,7 @@ rateController
     "/get-one-by-user/:idUser",
     AuthorLogin,
     checkRolesUsers,
+    checkStatusUsers,
     async (req: Request, res: Response) => {
       const userId = Number(req.params.idUser);
       const result = await rateServices.getOneByUser(userId);

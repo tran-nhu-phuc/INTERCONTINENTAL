@@ -8,11 +8,13 @@ import ShowImage from "../show-image/show-image";
 import LikeService from "../../services/like-services";
 import toast from "react-hot-toast";
 import CommentService from "../../services/comment-services";
+import useSocket from "../../hooks/useSocket";
 interface Props {
   item: any;
-  handleChangeCallComment: Function;
+  statusCallComment: any;
 }
 const ContentComment: React.FC<Props> = (props: Props) => {
+  const socket = useSocket();
   const rate = Number(props.item?.user?.rattings[0]?.rate);
   const [isOpenImage, setIsOpenImage] = useState<boolean>(false);
   const [userId] = useState<any>(localStorage.getItem("tokenId"));
@@ -37,10 +39,11 @@ const ContentComment: React.FC<Props> = (props: Props) => {
     try {
       const commentServices = new CommentService();
       const result = await commentServices.removeComment(idComment);
-      console.log(result);
       if (result?.status === 204) {
         toast.success("ok delete");
-        props.handleChangeCallComment();
+        socket.emit(`commentDelete`, {
+          commentId: props?.item?.id,
+        });
         return;
       } else {
         toast.error("fail delete");
@@ -58,11 +61,14 @@ const ContentComment: React.FC<Props> = (props: Props) => {
         Number(props.item?.id)
       );
       if (result.status === 201) {
-        props.handleChangeCallComment();
+        socket.emit(`commentLike`, {
+          commentId: props?.item?.id,
+        });
+        return;
+      } else {
+        toast.error("fail like");
         return;
       }
-      toast.error("fail like");
-      return;
     } catch (error) {
       toast.error("fail like");
       console.log(error);
@@ -81,6 +87,22 @@ const ContentComment: React.FC<Props> = (props: Props) => {
     };
     handleCallComment();
   }, []);
+  useEffect(() => {
+    const handleCallComment = async () => {
+      try {
+        const commentServices = new CommentService();
+        const result = await commentServices.getAllByRoom(props.item?.roomId);
+        setDataComment([...result.data]);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    socket.on(`comment`, (roomId: any) => {
+      if (props?.item?.roomId == roomId?.roomId) {
+        handleCallComment();
+      }
+    });
+  }, [socket]);
   const items: MenuProps["items"] = [
     {
       label: (
@@ -95,7 +117,6 @@ const ContentComment: React.FC<Props> = (props: Props) => {
     },
   ];
   const isUserLiked = useMemo(() => {
-    console.log(props.item?.likes);
     return props.item?.likes?.findIndex((item: any) => {
       return item?.userId == userId;
     });

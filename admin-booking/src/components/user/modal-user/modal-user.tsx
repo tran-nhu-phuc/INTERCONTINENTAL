@@ -2,12 +2,14 @@ import { useState } from "react";
 import "./modal-user.css";
 import UserService from "../../../services/user-services";
 import toast from "react-hot-toast";
+import useSocket from "../../../hooks/useSocket";
 interface Props {
   dataIndexUser: any;
   handelClosePopup: Function;
   handelCallBackApi: Function;
 }
 const ModalUser: React.FC<Props> = (props: Props) => {
+  const socket = useSocket();
   const [getDataEditUser, setGetDataEditUser] = useState<any>();
   const handelEditUser = async () => {
     if (getDataEditUser) {
@@ -16,8 +18,13 @@ const ModalUser: React.FC<Props> = (props: Props) => {
         if (getDataEditUser) {
           await userService.setStatusUser(
             { status: Number(getDataEditUser) },
-            props.dataIndexUser.id
+            props.dataIndexUser?.id
           );
+          if (getDataEditUser === 2) {
+            socket.emit(`blockUser`, {
+              userId: props.dataIndexUser?.id,
+            });
+          }
           await props.handelCallBackApi();
           await props.handelClosePopup();
         } else {
@@ -33,7 +40,10 @@ const ModalUser: React.FC<Props> = (props: Props) => {
       <div className="box-modal-user">
         <h2>Edit User</h2>
         <div className="select-user-admin">
-          <select onChange={(e: any) => setGetDataEditUser(e.target.value)}>
+          <select
+            aria-label="State"
+            onChange={(e: any) => setGetDataEditUser(e.target.value)}
+          >
             <option>Select Edit User</option>
             <option value={1}>Đang hoạt động</option>
             <option value={2}>Block</option>

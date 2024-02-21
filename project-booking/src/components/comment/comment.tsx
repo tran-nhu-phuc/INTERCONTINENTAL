@@ -13,8 +13,10 @@ import { useParams } from "react-router-dom";
 import CommentService from "../../services/comment-services";
 import RattingService from "../../services/ratting-services";
 import OrderService from "../../services/order-service";
+import useSocket from "../../hooks/useSocket";
 const CommentBooking = () => {
   const { id }: any = useParams();
+  const socket = useSocket();
   const userId: any = localStorage.getItem("tokenId");
   const [getDataRoom, setGetDataRoom] = useState<any>();
   const [getDataComment, setGetDataComment] = useState<any>();
@@ -115,6 +117,28 @@ const CommentBooking = () => {
     callDataComment();
   }, [statusCallComment, isOpenRatting]);
   useEffect(() => {
+    const callDataComment = async () => {
+      try {
+        const commentServices = new CommentService();
+        const resultComment = await commentServices.getAllByRoom(Number(id));
+        setGetDataComment([...resultComment?.data].reverse());
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    socket.on(`comment`, (roomId: any) => {
+      if (id == roomId?.roomId) {
+        callDataComment();
+      }
+    });
+    socket.on(`like`, (commentId: any) => {
+      callDataComment();
+    });
+    socket.on(`delete`, (commentId: any) => {
+      callDataComment();
+    });
+  }, [socket]);
+  useEffect(() => {
     const callRateStarByRoom = async () => {
       try {
         const rateServices = new RattingService();
@@ -150,7 +174,6 @@ const CommentBooking = () => {
     };
     setDataRenderComment(selectData());
   }, [dataSelect]);
-
   return (
     <div className="table-star-comment">
       <div className="header-payment">
@@ -202,13 +225,7 @@ const CommentBooking = () => {
         </div>
       </div>
       <div className="writing-comment">
-        {isOpenComment ? (
-          <CommentWriting
-            idRoom={id}
-            userId={userId}
-            handleChangeCallComment={handleChangeCallComment}
-          />
-        ) : null}
+        {isOpenComment ? <CommentWriting idRoom={id} userId={userId} /> : null}
       </div>
       <div className="box-comment">
         {dataSelect
@@ -216,7 +233,7 @@ const CommentBooking = () => {
               return (
                 <ContentComment
                   item={item}
-                  handleChangeCallComment={handleChangeCallComment}
+                  statusCallComment={statusCallComment}
                 />
               );
             })
@@ -224,7 +241,7 @@ const CommentBooking = () => {
               return (
                 <ContentComment
                   item={item}
-                  handleChangeCallComment={handleChangeCallComment}
+                  statusCallComment={statusCallComment}
                 />
               );
             })}
@@ -241,5 +258,4 @@ const CommentBooking = () => {
     </div>
   );
 };
-
 export default CommentBooking;

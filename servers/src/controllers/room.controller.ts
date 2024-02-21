@@ -3,6 +3,7 @@ import RoomService from "../services/room.services";
 import uploadCloud from "../configs/cloudinary.config";
 import AuthorLogin from "../middlewares/check-authen.middleware";
 import checkRolesUsers from "../middlewares/check-role-user.middleware";
+import checkStatusUsers from "../middlewares/check-status.middleware";
 const roomController = express.Router();
 const roomServices = new RoomService();
 roomController
@@ -11,7 +12,6 @@ roomController
       const sort = req.query.sort || undefined;
       const limit = Number(req.query.limit) || 7;
       const page = Number(req.query.page) || 1;
-      const search = String(req.query.search) || "a";
       const result = await roomServices.getAll(sort, limit, page);
       res.status(200).json(result);
     } catch (error) {
@@ -39,6 +39,7 @@ roomController
     "/add-room",
     AuthorLogin,
     checkRolesUsers,
+    checkStatusUsers,
     uploadCloud.array("files", 5),
     async (req: Request, res: Response) => {
       try {
@@ -82,6 +83,7 @@ roomController
     "/remove/:id",
     AuthorLogin,
     checkRolesUsers,
+    checkStatusUsers,
     async (req: Request, res: Response) => {
       try {
         const id = Number(req.params.id);
@@ -96,6 +98,7 @@ roomController
     "/update/:id",
     AuthorLogin,
     checkRolesUsers,
+    checkStatusUsers,
     async (req: Request, res: Response) => {
       try {
         const id = Number(req.params.id);
@@ -103,8 +106,6 @@ roomController
           ...req.body,
         };
         const result = await roomServices.updateRoom(id, newData);
-        console.log(result);
-
         res.json(result);
       } catch (error) {
         res.json(error);
@@ -113,6 +114,9 @@ roomController
   )
   .patch(
     "/upload-room/:id",
+    AuthorLogin,
+    checkRolesUsers,
+    checkStatusUsers,
     uploadCloud.single("file"),
     async (req: Request, res: Response) => {
       try {

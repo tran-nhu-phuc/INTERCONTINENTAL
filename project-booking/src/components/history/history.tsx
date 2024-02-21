@@ -18,7 +18,6 @@ const HistoryBooking = () => {
     setIsOpenDetail(status);
   };
   const handleRowDetail = async (record: any) => {
-    console.log(record);
     try {
       const getDataServices = new RoomService();
       const result = await getDataServices.getInformation(
@@ -60,12 +59,12 @@ const HistoryBooking = () => {
     },
     {
       title: "Status Booking",
-      dataIndex: "status",
-      sorter: (a, b) => a.status - b.status,
-      render(status) {
+      dataIndex: "statusBooking",
+      sorter: (a, b) => a.statusBooking - b.statusBooking,
+      render(statusBooking) {
         let result;
         let style;
-        switch (status) {
+        switch (statusBooking) {
           case 1:
             result = "Đang chờ nhận phòng";
             style = "black";

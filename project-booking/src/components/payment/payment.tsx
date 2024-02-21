@@ -28,7 +28,6 @@ const Payment = () => {
   const handleVoucherDiscount = (discount: number) => {
     setVoucherDiscount(discount);
   };
-  console.log(voucherDiscount);
   const handleOpenVoucher = (status: boolean) => {
     setIsOpenVoucher(status);
   };

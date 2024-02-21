@@ -11,6 +11,7 @@ import checkIdUsers from "../middlewares/check-id-user.middleware";
 import { Random } from "random-js";
 import checkRolesUsers from "../middlewares/check-role-user.middleware";
 import AuthorLogin from "../middlewares/check-authen.middleware";
+import checkStatusUsers from "../middlewares/check-status.middleware";
 const userController = express.Router();
 const userServices = new UserService();
 userController
@@ -67,12 +68,18 @@ userController
       res.status(404).json("Error Login");
     }
   })
-  .get("/logout", async (req: any, res: Response) => {
-    await req.session.destroy(function (error: Error) {
-      if (error) throw error;
-      res.json("logout ok");
-    });
-  })
+  .get(
+    "/logout",
+    AuthorLogin,
+    checkRolesUsers,
+    checkStatusUsers,
+    async (req: any, res: Response) => {
+      await req.session.destroy(function (error: Error) {
+        if (error) throw error;
+        res.json("logout ok");
+      });
+    }
+  )
   .post(
     "/forgot-password",
     checkEmailUsers,
@@ -145,7 +152,6 @@ userController
     }
   })
   .post("/confirm-reset-password", async (req: Request, res: Response) => {
-    console.log(req.cookies?.pin?.status);
     try {
       const compareDataUser = req.cookies?.pin?.status;
       if (compareDataUser) {
@@ -169,6 +175,7 @@ userController
     "/upload-avatar/:id",
     AuthorLogin,
     checkRolesUsers,
+    checkStatusUsers,
     checkIdUsers,
     uploadCloud.single("file"),
     async (req: Request, res: Response) => {
@@ -190,6 +197,7 @@ userController
     "/update-status/:id",
     AuthorLogin,
     checkRolesUsers,
+    checkStatusUsers,
     async (req: Request, res: Response) => {
       try {
         const id = Number(req.params.id);
@@ -208,6 +216,7 @@ userController
     "/",
     AuthorLogin,
     checkRolesUsers,
+    checkStatusUsers,
     async (req: Request, res: Response) => {
       try {
         const sort = req.query.sort || undefined;
@@ -224,6 +233,7 @@ userController
     "/info/:id",
     AuthorLogin,
     checkRolesUsers,
+    checkStatusUsers,
     async (req: Request, res: Response) => {
       try {
         const id = Number(req.params.id);
@@ -238,15 +248,14 @@ userController
     "/change-profile/:id",
     AuthorLogin,
     checkRolesUsers,
+    checkStatusUsers,
     async (req: Request, res: Response) => {
       try {
         const id = Number(req.params.id);
         const newData = {
           ...req.body,
         };
-        console.log(newData);
         const result = await userServices.updateProfile(id, newData);
-        console.log(result);
         if (result[0] === 0) {
           res.status(403).json("fail update");
         } else {

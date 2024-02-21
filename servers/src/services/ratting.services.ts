@@ -1,5 +1,5 @@
 import RateRepository from "../repositories/ratting.repositories";
-
+import { RateTypes } from "../types/rates";
 class RateService {
   private repository: RateRepository;
   constructor() {

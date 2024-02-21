@@ -8,13 +8,17 @@ export const onLogin = createAsyncThunk(
     try {
       const userService = new UserService();
       const response = await userService.login(formLogin);
-      localStorage.setItem("token", response.data.accessToken);
-      localStorage.setItem("tokenId", response.data.data.id);
-      localStorage.setItem(
-        "nameUser",
-        response.data.data.firstName + " " + response.data.data.lastName
-      );
-      return response;
+      if (response.data.data.status === 1) {
+        localStorage.setItem("token", response.data.accessToken);
+        localStorage.setItem("tokenId", response.data.data.id);
+        localStorage.setItem(
+          "nameUser",
+          response.data.data.firstName + " " + response.data.data.lastName
+        );
+        return response;
+      } else {
+        return 0;
+      }
     } catch (error) {
       return error;
     }
@@ -51,6 +55,11 @@ export const userSlice = createSlice({
       localStorage.removeItem("tokenId");
       localStorage.removeItem("nameUser");
       sessionStorage.clear();
+      // document.cookie.split(";").forEach(function (c) {
+      //   document.cookie = c
+      //     .replace(/^ +/, "")
+      //     .replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
+      // });
     },
   },
   extraReducers: (builder) => {

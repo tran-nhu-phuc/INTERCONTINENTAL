@@ -1,5 +1,4 @@
-import { ColumnsType } from "antd/es/table";
-import { Contents, DataContentHistory } from "../type/type";
+import { Contents } from "../type/type";
 
 export const content: Contents[] = [
   {

@@ -1,5 +1,4 @@
 import Ratting from "../entities/ratting.table";
-
 class RateRepository {
   async createRate(newDataRate: any) {
     return await Ratting.create(newDataRate);

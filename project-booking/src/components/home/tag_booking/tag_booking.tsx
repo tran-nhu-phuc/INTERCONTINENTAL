@@ -85,6 +85,7 @@ const TagBooking: React.FC<Props> = (props: Props) => {
             <p>Số lượng phòng</p>
             <div className="box-tag-select">
               <select
+                aria-label="State"
                 name="room"
                 onChange={(e: any) => setNumberRoom(e.target.value)}
               >
@@ -101,6 +102,7 @@ const TagBooking: React.FC<Props> = (props: Props) => {
             <p>Người lớn</p>
             <div className="box-tag-select">
               <select
+                aria-label="State"
                 name="room"
                 onChange={(e: any) => setCountUser(e.target.value)}
               >
@@ -132,6 +134,7 @@ const TagBooking: React.FC<Props> = (props: Props) => {
             <p>Trẻ em</p>
             <div className="box-tag-select">
               <select
+                aria-label="State"
                 name="room"
                 onChange={(e: any) => setCountChild(e.target.value)}
               >

@@ -14,7 +14,7 @@ const checkEmailUsers = async (
     }
     next();
   } catch (error) {
-    res.status(400).json({ msg: "error" });
+    res.status(400).json(error);
   }
 };
 

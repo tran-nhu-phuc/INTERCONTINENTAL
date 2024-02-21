@@ -78,14 +78,12 @@ const HeaderBooking = () => {
     };
     callApiBooking();
   }, [callBackApiBooking]);
-  console.log(dataBooking);
-
   useEffect(() => {
     const getUserByIDServices = async () => {
       try {
         const userServices = new UserService();
         const dataUser = await userServices.getInformation(userId);
-        setDataUserById(dataUser.data);
+        setDataUserById(dataUser?.data);
       } catch (error) {
         throw error;
       }
@@ -121,13 +119,15 @@ const HeaderBooking = () => {
           onClick={() => window.history.forward()}
         />
       </div>
-      <button
-        className="open-model-list-qr-code"
-        onClick={() => setIsModelQr(true)}
-      >
-        <FaChevronLeft />
-        Nhận phòng
-      </button>
+      {userId ? (
+        <button
+          className="open-model-list-qr-code"
+          onClick={() => setIsModelQr(true)}
+        >
+          <FaChevronLeft />
+          Nhận phòng
+        </button>
+      ) : null}
       {isModelQr ? (
         <div className="table-show-list-check-in-qr-code">
           <div className="list-qr-code-left">

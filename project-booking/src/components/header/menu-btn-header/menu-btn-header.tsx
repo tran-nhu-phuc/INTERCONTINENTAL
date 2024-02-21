@@ -1,9 +1,10 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import "./menu-btn-header.css";
 import TagBooking from "../../home/tag_booking/tag_booking";
-import { useDispatch } from "react-redux";
-import { updateSearch } from "../../../store/reducer/update";
-const ButtonHeader = () => {
+interface Props {
+  isStatusHeader: boolean;
+}
+const ButtonHeader: React.FC<Props> = (props) => {
   const [openTagBooking, setTagBooking] = useState<boolean>(false);
   const handelChangeStatus = (status: boolean) => {
     setTagBooking(status);
@@ -12,7 +13,13 @@ const ButtonHeader = () => {
     <>
       <div className="menu-btn-header">
         <div className="btn-club">
-          <button>
+          <button
+            style={{
+              border: props.isStatusHeader
+                ? "1px solid rgba(0,0,0,0)"
+                : "1px solid rgba(0,0,0,0.3)",
+            }}
+          >
             <img
               src="/asset/image-header-home/image-header-home-2.png"
               alt="logo INTERCONTINENTAL"
@@ -21,7 +28,16 @@ const ButtonHeader = () => {
           </button>
         </div>
         <div className="btn-booking-room">
-          <button onClick={() => setTagBooking(true)}>Đặt phòng</button>
+          <button
+            onClick={() => setTagBooking(true)}
+            style={{
+              border: props.isStatusHeader
+                ? "1px solid rgba(0,0,0,0)"
+                : "1px solid rgba(0,0,0,0.3)",
+            }}
+          >
+            Đặt phòng
+          </button>
         </div>
         {openTagBooking ? (
           <TagBooking handelChangeStatus={handelChangeStatus} />

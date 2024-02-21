@@ -34,15 +34,15 @@ textarea,
 input,
 button {
     border: none;
-    outline: none;
+    outline: none !important;
     color: rgb(101, 98, 98);
 }
 
 button {
+    outline: none;
+    border: none;
     cursor: pointer;
     transition: 0.3s;
     background-color: #ffff;
     font-family: 'Open Sans', sans-serif;
-    outline: none;
-    border: none;
 }

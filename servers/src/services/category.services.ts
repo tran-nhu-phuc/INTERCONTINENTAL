@@ -1,11 +1,12 @@
 import CategoryRepository from "../repositories/category.repositories";
+import { CategoryTypes } from "../types/category";
 
 class CategoryService {
   private repository: CategoryRepository;
   constructor() {
     this.repository = new CategoryRepository();
   }
-  async createCategory(newDataRoom: any) {
+  async createCategory(newDataRoom: CategoryTypes) {
     return await this.repository.createCategory(newDataRoom);
   }
   async getAll() {

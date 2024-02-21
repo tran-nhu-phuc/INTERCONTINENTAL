@@ -116,6 +116,7 @@ const BookingComponent = () => {
         <div className="select-bed-count">
           <label>Type Bed</label>
           <select
+            aria-label="State"
             onChange={(e: any) => {
               setSortNameRoom(e.target.value);
               handleViewMore(1000);
@@ -130,7 +131,11 @@ const BookingComponent = () => {
         </div>
         <div className="select-money">
           <label>Type Money</label>
-          <select onChange={handelChangePrice} value={changeMoney}>
+          <select
+            aria-label="State"
+            onChange={handelChangePrice}
+            value={changeMoney}
+          >
             <option value={"USD"}>USD</option>
             <option value={"VND"}>VND</option>
             <option value={"EURO"}>EURO</option>

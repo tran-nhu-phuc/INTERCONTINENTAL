@@ -4,6 +4,7 @@ import { FaBars } from "react-icons/fa";
 import { FaChevronDown } from "react-icons/fa";
 interface Props {
   handleClickCloseTable: Function;
+  isStatusHeader: boolean;
 }
 const MenuHeader: React.FC<Props> = (props: Props) => {
   return (
@@ -14,11 +15,17 @@ const MenuHeader: React.FC<Props> = (props: Props) => {
             onClick={() => {
               props.handleClickCloseTable(true);
             }}
+            style={{ color: props.isStatusHeader ? "#ffff" : "black" }}
           />
         </div>
         <div className="menu-translate">
-          <strong>Menu</strong>
-          <div className="btn-menu">
+          <strong style={{ color: props.isStatusHeader ? "#ffff" : "black" }}>
+            Menu
+          </strong>
+          <div
+            className="btn-menu"
+            style={{ color: props.isStatusHeader ? "#ffff" : "black" }}
+          >
             <h4>VN</h4>
             <FaChevronDown />
           </div>

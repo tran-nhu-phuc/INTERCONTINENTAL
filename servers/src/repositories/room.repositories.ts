@@ -1,10 +1,9 @@
-import { Op, Sequelize, where } from "sequelize";
 import ImageRoom from "../entities/image-room.table";
 import Room from "../entities/room.table";
-import { UpdateRoom } from "../types/room.type";
+import { CreateRoomType, UpdateRoom } from "../types/room.type";
 
 class RoomRepository {
-  async CreateRoom(newDataRoom: any) {
+  async CreateRoom(newDataRoom: CreateRoomType) {
     const newRoom = await Room.create({
       name: newDataRoom.name,
       price: newDataRoom.price,
@@ -61,11 +60,11 @@ class RoomRepository {
       }
     );
   }
-  async uploadRoom(newData: any, id: number) {
+  async uploadRoom(newData: CreateRoomType, id: number) {
     return await ImageRoom.update({ ...newData }, { where: { roomId: id } });
   }
   async getAllForAdmin() {
-    return await Room.findAll();
+    return await Room.findAll({ include: ImageRoom });
   }
 }
 export default RoomRepository;

@@ -46,8 +46,8 @@ const Room = () => {
   };
   const confirm = (core: any) => {
     message.success("Click on Yes");
-    setCallBackApiDelete(!callBackApiDelete);
     handleRemoveRoom(core);
+    setCallBackApiDelete(!callBackApiDelete);
   };
   const handleRemoveRoom = async (core: any) => {
     try {

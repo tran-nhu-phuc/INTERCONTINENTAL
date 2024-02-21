@@ -81,6 +81,8 @@
     border: 1px solid rgba(255, 255, 255, 0.5);
     padding: 10px;
     border-radius: 5px;
+    outline: none;
+    border: none;
 }
 
 .header-register .do-register .login-header-booking {

@@ -1,8 +1,8 @@
-import { Includeable } from "sequelize";
 import Comment from "../entities/comment.table";
 import Ratting from "../entities/ratting.table";
 import User from "../entities/user.table";
 import Like from "../entities/like.table";
+import { CommentTypes } from "../types/comment";
 class CommentRepository {
   async getAllByRoom(sort: any, limit: number, offset: number, idRoom: number) {
     const includeModels: any[] = [
@@ -42,7 +42,7 @@ class CommentRepository {
   async createComment(newData: any) {
     return await Comment.create(newData);
   }
-  async updateComment(id: number, newData: any) {
+  async updateComment(id: number, newData: CommentTypes) {
     return await Comment.update({ ...newData }, { where: { id } });
   }
   async removeComment(id: number) {

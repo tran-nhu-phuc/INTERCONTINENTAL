@@ -1,4 +1,5 @@
 import Admin from "../entities/admin.table";
+import { AdminTypes } from "../types/admin";
 
 class AdminRepository {
   async createAdmin(newData: any) {
@@ -11,8 +12,8 @@ class AdminRepository {
       },
     });
   }
-  async updateAdmin(id: number, newData: any) {
-    return await Admin.update({ newData }, { where: { id } });
+  async updateAdmin(id: number, newData: AdminTypes) {
+    return await Admin.update({ ...newData }, { where: { id } });
   }
 }
 export default AdminRepository;
