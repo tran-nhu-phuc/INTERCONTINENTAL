@@ -70,12 +70,13 @@ const FormLogin: React.FC<Props> = (props: Props) => {
           return;
         } else {
           setLoading(false);
-          toast(res.response.data);
+          toast(res?.response?.data);
           return;
         }
       }
     } catch (error) {
       setLoading(false);
+      console.log(error);
       toast.error("Tài khoản không tồn tại");
     }
   };

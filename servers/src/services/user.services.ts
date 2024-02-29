@@ -2,6 +2,8 @@ import UserRepository from "../repositories/user.repositories";
 import { UsersType, UsersTypeLogin } from "../types/user.type";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
+import dotenv from "dotenv";
+dotenv.config();
 class UserService {
   private userRepository: UserRepository;
   constructor() {
@@ -11,7 +13,7 @@ class UserService {
     const result = await this.userRepository.register(newDataUser);
     if (result.dataValues) {
       const { password, createAt, updateAt, ...userData } = result.dataValues;
-      const accessToken = jwt.sign(userData, "secret");
+      const accessToken = jwt.sign(userData, process.env?.JWT as string);
       return {
         data: userData,
         accessToken,
@@ -30,7 +32,7 @@ class UserService {
         );
         const { password, createAt, updateAt, ...userData } =
           checkUser.dataValues;
-        const accessToken = jwt.sign(userData, "secret");
+        const accessToken = jwt.sign(userData, process.env?.JWT as string);
         if (compareDataUser) {
           return {
             data: userData,

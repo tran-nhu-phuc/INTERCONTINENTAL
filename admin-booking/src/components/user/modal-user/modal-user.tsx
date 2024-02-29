@@ -20,7 +20,7 @@ const ModalUser: React.FC<Props> = (props: Props) => {
             { status: Number(getDataEditUser) },
             props.dataIndexUser?.id
           );
-          if (getDataEditUser === 2) {
+          if (getDataEditUser == 2) {
             socket.emit(`blockUser`, {
               userId: props.dataIndexUser?.id,
             });

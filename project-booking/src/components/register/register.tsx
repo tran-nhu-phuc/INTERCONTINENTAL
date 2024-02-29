@@ -7,6 +7,7 @@ import toast, { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { onRegister } from "../../store/reducer/user";
+import Loading from "../../common/loading";
 const RegisterBooking = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -18,6 +19,7 @@ const RegisterBooking = () => {
     phone: NaN,
     password: "",
   });
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const handelButtonRegister = (dataRegister: boolean) => {
     setCheckFormRegister(dataRegister);
   };
@@ -25,27 +27,33 @@ const RegisterBooking = () => {
     setDataFormUser({ ...data });
   };
   const joinDataRegister = async () => {
+    setIsLoading(true);
     try {
       if (checkFormRegister) {
         const res = await dispatch(onRegister(dataFormUser) as any).unwrap();
         if (!res.data.errors) {
           navigate("/");
+          setIsLoading(false);
           return;
         } else {
           toast.error("email đã tồn tại");
+          setIsLoading(false);
           return;
         }
       } else {
         toast.error("Vui lòng nhập đúng");
+        setIsLoading(false);
         return;
       }
     } catch {
       toast.error("register error");
+      setIsLoading(false);
       return;
     }
   };
   return (
     <div>
+      {isLoading ? <Loading /> : null}
       <Toaster position="top-center" reverseOrder={false} />
       <main className="content-register">
         <div className="box-register-form">

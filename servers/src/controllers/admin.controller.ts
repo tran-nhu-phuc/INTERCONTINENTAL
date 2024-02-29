@@ -29,31 +29,25 @@ adminController
       }
     }
   )
-  .post(
-    "/login-admin",
-    AuthorLogin,
-    checkRolesUsers,
-    checkStatusUsers,
-    async (req: any, res: Response) => {
-      try {
-        const dataForm = {
-          password: req.body.password,
-          email: req.body.email,
-        };
-        const result = await adminServices.loginAdmin(dataForm);
-        if (result == 0) {
-          res.status(404).json("email fail");
-        } else if (result == 1) {
-          res.status(400).json("password sai");
-        } else {
-          req.session.loginAdmin = result;
-          res.json(result);
-        }
-      } catch (error) {
-        res.status(404).json("Error Login");
+  .post("/login-admin", async (req: any, res: Response) => {
+    try {
+      const dataForm = {
+        password: req.body.password,
+        email: req.body.email,
+      };
+      const result = await adminServices.loginAdmin(dataForm);
+      if (result == 0) {
+        res.status(404).json("email fail");
+      } else if (result == 1) {
+        res.status(400).json("password sai");
+      } else {
+        req.session.loginAdmin = result;
+        res.json(result);
       }
+    } catch (error) {
+      res.status(404).json("Error Login");
     }
-  )
+  })
   .patch(
     "/update-admin/:id",
     AuthorLogin,

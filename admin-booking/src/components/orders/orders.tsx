@@ -161,6 +161,7 @@ const Orders = () => {
       key: "code",
       width: "20%",
       ...getColumnSearchProps("code"),
+      ...getColumnSearchProps("code"),
     },
     {
       title: "User Id",

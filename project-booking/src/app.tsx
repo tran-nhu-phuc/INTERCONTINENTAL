@@ -12,7 +12,8 @@ function App() {
   useEffect(() => {
     const id = localStorage.getItem("tokenId");
     socket.on("logout", (userId: any) => {
-      if (id === userId?.userId) {
+      console.log(userId);
+      if (id == userId?.userId) {
         dispatch(logout());
         navigate("/");
       }

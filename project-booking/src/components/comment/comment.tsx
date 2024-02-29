@@ -30,14 +30,11 @@ const CommentBooking = () => {
   const handlePopUpRatting = (statusRatting: boolean) => {
     setIsOpenRatting(statusRatting);
   };
-  const handleChangeCallComment = () => {
-    setStatusCallComment(!statusCallComment);
-  };
   const handleChange = (value: string) => {
     setDataSelect(value);
   };
   const handelClickScrollToTop = () => {
-    window.scroll(0, 1500);
+    window.scroll(0, 1000);
   };
 
   const percentageByRating = useMemo(() => {

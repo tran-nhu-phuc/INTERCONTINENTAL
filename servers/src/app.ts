@@ -13,7 +13,7 @@ import { Server, Socket } from "socket.io"; //config file .env
 dotenv.config();
 //create server with express
 const server = express();
-//cookie
+//cookie b
 server.use(cookieParser());
 //session
 server.use(
@@ -50,7 +50,10 @@ const io = new Server(app, {
 });
 
 io.on("connection", (socket: Socket) => {
+  console.log(socket.id);
   socket.on("blockUser", (userId: any) => {
+    console.log(userId);
+
     io.emit("logout", userId);
   });
   socket.on("commentNew", (roomId: any) => {

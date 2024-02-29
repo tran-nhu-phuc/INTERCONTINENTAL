@@ -33,7 +33,7 @@ option,
 input,
 button {
     border: none;
-    outline: none;
+    outline: none !important;
     color: rgb(101, 98, 98);
 }
 

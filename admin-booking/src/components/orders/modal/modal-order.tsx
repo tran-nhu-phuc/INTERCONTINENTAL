@@ -34,17 +34,22 @@ const ModalOrder: React.FC<Props> = (props: Props) => {
     }
   };
   let value = "";
+  let status;
   switch (props.dataCodeOrder.statusBooking?.toString()) {
     case "1":
+      status = false;
       value = "Đang chờ nhận phòng";
       break;
     case "2":
+      status = false;
       value = "Đã nhận phòng";
       break;
     case "3":
+      status = true;
       value = "Đã trả phòng";
       break;
   }
+
   return (
     <div className="modal-admin">
       {loading ? <Loading styleLoading="white" /> : null}
@@ -56,8 +61,12 @@ const ModalOrder: React.FC<Props> = (props: Props) => {
             defaultValue={value}
             onChange={(e: any) => setEditDataStatusOrder(e.target.value)}
           >
-            <option value={1}>Đang chờ nhận phòng</option>
-            <option value={2}>Đã nhận phòng</option>
+            <option value={1} disabled={status}>
+              Đang chờ nhận phòng
+            </option>
+            <option value={2} disabled={status}>
+              Đã nhận phòng
+            </option>
             <option value={3}>Đã trả phòng</option>
           </select>
         </div>
