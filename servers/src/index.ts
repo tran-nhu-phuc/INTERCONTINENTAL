@@ -42,10 +42,10 @@ const app = http.createServer(server);
 const io = new Server(app, {
   cors: {
     origin: [
+      "project-module-2.vercel.app",
       "http://localhost:3000",
       "http://localhost:5000",
       "http://localhost:3001",
-      "project-module-2.vercel.app",
     ],
   },
 });
@@ -78,10 +78,10 @@ io.on("connection", (socket: Socket) => {
 server.use(
   cors({
     origin: [
+      "project-module-2.vercel.app",
       "http://localhost:3000",
       "http://localhost:3001",
       "http://localhost:5000",
-      "project-module-2.vercel.app",
     ],
     credentials: true,
     optionsSuccessStatus: 200,
