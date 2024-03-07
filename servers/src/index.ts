@@ -41,12 +41,7 @@ sequelize.authenticate();
 const app = http.createServer(server);
 const io = new Server(app, {
   cors: {
-    origin: [
-      "https://project-module-2.onrender.com",
-      "http://localhost:3000",
-      "http://localhost:5000",
-      "http://localhost:3001",
-    ],
+    origin: ["https://project-module-2.onrender.com"],
   },
 });
 
@@ -77,12 +72,7 @@ io.on("connection", (socket: Socket) => {
 //connect client
 server.use(
   cors({
-    origin: [
-      "https://project-module-2.onrender.com",
-      "http://localhost:3000",
-      "http://localhost:3001",
-      "http://localhost:5000",
-    ],
+    origin: ["https://project-module-2.onrender.com"],
     credentials: true,
     optionsSuccessStatus: 200,
   })
