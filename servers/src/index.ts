@@ -13,7 +13,7 @@ import { Server, Socket } from "socket.io"; //config file .env
 dotenv.config();
 //create server with express
 const server = express();
-//cookie b
+//cookie
 server.use(cookieParser());
 //session
 server.use(
