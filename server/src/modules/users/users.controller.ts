@@ -73,7 +73,7 @@ export class UsersController {
         res.cookie('otp', dataCookie, {
           expires: new Date(Date.now() + 120000),
           httpOnly: true,
-          path: 'http://localhost:8000/api/v1/users/check-pin',
+          path: 'https://project-module-2.onrender.com/api/v1/users/check-pin',
         });
         return res.json({ msg: 'Ok', status: HttpStatus.OK, sendMailToUser });
       }
@@ -107,7 +107,7 @@ export class UsersController {
           {
             expires: new Date(Date.now() + 120000),
             httpOnly: true,
-            path: 'http://localhost:8000/api/v1/users/confirm-reset-password',
+            path: 'https://project-module-2.onrender.com/api/v1/users/confirm-reset-password',
           },
         );
         return res.status(201).json(0);
