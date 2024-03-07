@@ -45,6 +45,7 @@ const io = new Server(app, {
       "http://localhost:3000",
       "http://localhost:5000",
       "http://localhost:3001",
+      "project-module-2.vercel.app",
     ],
   },
 });
@@ -80,6 +81,7 @@ server.use(
       "http://localhost:3000",
       "http://localhost:3001",
       "http://localhost:5000",
+      "project-module-2.vercel.app",
     ],
     credentials: true,
     optionsSuccessStatus: 200,
