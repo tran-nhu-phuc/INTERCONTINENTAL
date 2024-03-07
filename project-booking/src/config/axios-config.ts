@@ -1,6 +1,6 @@
 import axios from "axios";
 const baseAxios = axios.create({
-  baseURL: "http://localhost:8000",
+  baseURL: "https://project-module-2.onrender.com",
 });
 axios.defaults.withCredentials = true;
 baseAxios.defaults.withCredentials = true;
