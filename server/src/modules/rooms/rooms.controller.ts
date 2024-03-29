@@ -24,14 +24,14 @@ export class RoomsController {
   ) {}
 
   @Get()
-  async getAllRoom(@Query() query, @Res() res) {
+  async getAllRoom(@Query() query) {
     try {
       const sort = query.sort || undefined;
       const limit = Number(query.limit) || 7;
       const page = Number(query.page) || 1;
       return await this.roomService.getAllRoom(sort, limit, page);
     } catch (error) {
-      return res.json(error);
+      return { msg: 'Error', error };
     }
   }
 
@@ -78,7 +78,7 @@ export class RoomsController {
       }
       return { msg: 'Create ok' };
     } catch (error) {
-      throw error;
+      throw { msg: error[`QueryFailedError`], error };
     }
   }
 

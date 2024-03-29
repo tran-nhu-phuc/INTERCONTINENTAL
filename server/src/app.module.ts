@@ -12,12 +12,12 @@ import { LikesModule } from './modules/likes/likes.module';
 import { VouchersModule } from './modules/vouchers/vouchers.module';
 import { CommentsModule } from './modules/comments/comments.module';
 import { CheckUserId } from './middlewares/checkUserId.middleware';
-import { APP_INTERCEPTOR } from '@nestjs/core';
-import { LoggingInterceptor } from './interceptors/response.interceptor';
 import { ImageRoomsModule } from './modules/image-rooms/image-rooms.module';
-
+import { WebsocketsModule } from './modules/socket/socket.module';
+import { AppGateway } from './modules/socket/socket.gateway';
 @Module({
   imports: [
+    WebsocketsModule,
     TypeOrmModule.forRoot(typeOrmConfig),
     UsersModule,
     AdminsModule,
@@ -37,6 +37,7 @@ import { ImageRoomsModule } from './modules/image-rooms/image-rooms.module';
     //   provide: APP_INTERCEPTOR,
     //   useClass: LoggingInterceptor,
     // },
+    AppGateway,
   ],
 })
 export class AppModule {

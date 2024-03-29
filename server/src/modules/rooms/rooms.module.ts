@@ -24,5 +24,6 @@ import { ImageRoomsModule } from '../image-rooms/image-rooms.module';
   ],
   controllers: [RoomsController],
   providers: [RoomsService, RoomsRepository],
+  exports: [RoomsService],
 })
 export class RoomsModule {}

@@ -13,6 +13,7 @@ import { CommentsService } from './comments.service';
 @Controller('comments')
 export class CommentsController {
   constructor(private readonly commentService: CommentsService) {}
+
   @Get('get-all-comment/:idRoom')
   async findAllByRoom(@Param() params) {
     try {

@@ -7,9 +7,11 @@ import { Booking } from 'src/entities/bookings.entities';
 import { User } from 'src/entities/users.entities';
 import { CustomerInFo } from 'src/entities/customerInFo.entities';
 import { CustomerInfoModule } from '../customer-info/customer-info.module';
+import { RoomsModule } from '../rooms/rooms.module';
 
 @Module({
   imports: [
+    RoomsModule,
     CustomerInfoModule,
     TypeOrmModule.forFeature([Booking, User, CustomerInFo]),
   ],

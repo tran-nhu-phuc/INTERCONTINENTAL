@@ -9,8 +9,13 @@ export class RoomsRepository {
     private roomRepository: Repository<Room>,
   ) {}
 
-  async getAll(sort: any, limit: number, offset: number) {
-    return await this.roomRepository.find({ order: { id: sort } });
+  async getAll(sort: any, limit: number, page: number) {
+    return await this.roomRepository.find({
+      relations: { imageRoom: true },
+      order: { id: sort },
+      take: limit,
+      skip: (page - 1) * limit,
+    });
   }
 
   async create(newData: any) {
@@ -25,9 +30,7 @@ export class RoomsRepository {
   }
   async finOne(id: number) {
     return await this.roomRepository.findOne({
-      relations: {
-        imageRoom: true,
-      },
+      relations: { imageRoom: true },
       where: { id },
     });
   }

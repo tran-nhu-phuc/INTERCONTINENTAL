@@ -3,11 +3,13 @@ import { BookingsRepository } from './bookings.repository';
 import { v4 as uuidv4 } from 'uuid';
 import { CustomerRepository } from '../customer-info/customer-info.repositories';
 import { CustomerInfoService } from '../customer-info/customer-info.service';
+import { RoomsService } from '../rooms/rooms.service';
 @Injectable()
 export class BookingsService {
   constructor(
     private bookingRepository: BookingsRepository,
     private customerInFoRepository: CustomerInfoService,
+    private readonly roomService: RoomsService,
   ) {}
 
   async findAll() {
@@ -64,7 +66,15 @@ export class BookingsService {
         country: newData.country,
         bookingId: resultBooking.id,
       });
-      return { booking: resultBooking, customerInFo: resultCustomInFo };
+      const updateRoom = await this.roomService.updateRoomAsBooking(
+        newData?.roomId,
+        newData?.numberRooms,
+      );
+      return {
+        booking: resultBooking,
+        customerInFo: resultCustomInFo,
+        updateRoom,
+      };
     } catch (error) {
       throw error;
     }

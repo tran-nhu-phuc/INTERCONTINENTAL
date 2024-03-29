@@ -33,11 +33,12 @@ export class AuthController {
       };
       const result = await this.authService.register(newData);
       if (result) {
-        return { status: 201, msg: 'CREATED' };
+        return { status: 201, access_token: result };
       } else {
         throw { msg: 'CREATE FAIL' };
       }
     } catch (error) {
+      console.log(error);
       if (error[`sqlMessage`]) {
         return error[`sqlMessage`];
       }

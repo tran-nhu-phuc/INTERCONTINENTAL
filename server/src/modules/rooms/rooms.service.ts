@@ -10,11 +10,10 @@ export class RoomsService {
   ) {}
 
   async getAllRoom(sort: any, limit: number, page: number) {
-    let offset = Math.ceil((page - 1) * limit);
-    const result = await this.roomRepository.getAll(sort, limit, offset);
-    // return result?.filter((item: any) => {
-    //   return item.stock > 0 && item.isDelete !== true;
-    // });
+    const result = await this.roomRepository.getAll(sort, limit, page);
+    return result?.filter((item: any) => {
+      return item.stock > 0 && item.isDelete !== true;
+    });
   }
 
   async createRoom(newData: any) {
@@ -37,6 +36,18 @@ export class RoomsService {
 
   async updateRoom(id: number, newData: any) {
     return await this.roomRepository.update(id, newData);
+  }
+
+  async updateRoomAsBooking(id: number, numberRoom: number) {
+    try {
+      const findOneById = await this.roomRepository.finOne(id);
+      const newData = {
+        stock: findOneById?.stock - numberRoom,
+      };
+      return await this.roomRepository.update(id, newData);
+    } catch (error) {
+      throw { msg: 'Error logic', error };
+    }
   }
 
   async removeRoom(id: number) {

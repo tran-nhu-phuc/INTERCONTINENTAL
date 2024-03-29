@@ -43,7 +43,18 @@ export class AuthService {
       if (user) {
         throw { msg: 'Email Already Exists' };
       }
-      return await this.usersService.create(newData);
+      const data = await this.usersService.create(newData);
+      if (data) {
+        const payload = {
+          id: data?.id,
+          email: data.email,
+          role: data.role,
+          name: data.firstName + ' ' + data.lastName,
+          status: data.status,
+        };
+        return this.jwtService.signAsync(payload);
+      }
+      return { msg: 'Error not create' };
     } catch (error) {
       throw error;
     }

@@ -21,6 +21,8 @@ import { UploadService } from '../upload/upload.service';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { AuthGuard } from 'src/guards/auth.guard';
 import { RoleGuard } from 'src/guards/author.guard';
+import { AuthAdminGuard } from 'src/guards/auth.admin.guard';
+import { RoleAdminGuard } from 'src/guards/author.admin.guard';
 
 @Controller('users')
 export class UsersController {
@@ -137,6 +139,7 @@ export class UsersController {
   }
 
   @Patch('upload-avatar/:id')
+  @UseGuards(AuthGuard, RoleGuard)
   @UseInterceptors(FileInterceptor('file'))
   async uploadAvatar(
     @UploadedFile() file,
@@ -160,6 +163,7 @@ export class UsersController {
   }
 
   @Patch('update-status/:id')
+  @UseGuards(AuthAdminGuard, RoleAdminGuard)
   async updateStatus(@Param() param, @Body() body) {
     try {
       const id = Number(param?.id);
